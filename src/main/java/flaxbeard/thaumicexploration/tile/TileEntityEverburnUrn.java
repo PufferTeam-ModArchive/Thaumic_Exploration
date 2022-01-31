@@ -34,7 +34,7 @@ public class TileEntityEverburnUrn extends TileVisNode implements IFluidTank, IF
     private int range = 3;
     private int yRange = 2;
     private EntityPlayer burningPlayer;
-    public static int CONVERSION_FACTOR=250;
+    public static int CONVERSION_FACTOR=10;
 
 
     @Override
@@ -64,7 +64,7 @@ public class TileEntityEverburnUrn extends TileVisNode implements IFluidTank, IF
     @Override
     public int getCapacity() {
         // TODO Auto-generated method stub
-        return 4*CONVERSION_FACTOR;
+        return 10*CONVERSION_FACTOR;
     }
 
     @Override
@@ -88,7 +88,7 @@ public class TileEntityEverburnUrn extends TileVisNode implements IFluidTank, IF
         }
         if(doDrain) {
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
-            ignisVis=ignisVis-(drained/250);
+            ignisVis=ignisVis-(drained/10);
         }
         FluidStack stack = new FluidStack(FluidRegistry.LAVA, (int)drained);
         return stack;
@@ -149,8 +149,8 @@ public class TileEntityEverburnUrn extends TileVisNode implements IFluidTank, IF
         super.updateEntity();
         this.ticks++;
         if(this.ticks==10) {
-            if(this.ignisVis<16){
-                    ignisVis += VisNetHandler.drainVis(this.worldObj, this.xCoord, this.yCoord, this.zCoord, Aspect.FIRE, 1);
+            if(this.ignisVis<200){
+                    ignisVis += VisNetHandler.drainVis(this.worldObj, this.xCoord, this.yCoord, this.zCoord, Aspect.FIRE, 5);
                     worldObj.markBlockForUpdate(xCoord,yCoord,zCoord);
                 }
             ticks=0;
