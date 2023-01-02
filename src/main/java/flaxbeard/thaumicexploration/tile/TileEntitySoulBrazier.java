@@ -6,6 +6,7 @@ import flaxbeard.thaumicexploration.chunkLoader.ITXChunkLoader;
 import flaxbeard.thaumicexploration.common.ConfigTX;
 import flaxbeard.thaumicexploration.misc.brazier.SoulBrazierUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -92,6 +93,8 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
             active = true;
             storedWarp += playerWarp;
             Thaumcraft.proxy.getPlayerKnowledge().setWarpPerm(owner.getName(), 0);
+            SoulBrazierUtils.syncPermWarp((EntityPlayerMP) player);
+
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             return true;
         }
@@ -121,7 +124,7 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
 
         getPower();
         if (active) {
-            if (heldChunk == null && ConfigTX.allowSBChunkLoading == true) addTicket();
+            if (heldChunk == null && ConfigTX.allowSBChunkLoading) addTicket();
             if (this.count % 60 == 0) spendPower();
             if (!checkPower()) {
                 active = false;
@@ -132,7 +135,12 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
                     if (SoulBrazierUtils.isPlayerOnline(owner.getId())) {
                         int aCurrentWarp = Thaumcraft.proxy.getPlayerKnowledge().getWarpPerm(owner.getName());
                         int aTotalWarp = aCurrentWarp + storedWarp;
-                        Thaumcraft.proxy.getPlayerKnowledge().setWarpPerm(owner.getName(), aTotalWarp);
+
+                        if (aCurrentWarp != aTotalWarp) {
+                            Thaumcraft.proxy.getPlayerKnowledge().setWarpPerm(owner.getName(), aTotalWarp);
+                            EntityPlayer player = SoulBrazierUtils.getPlayerFromUUID(owner.getId());
+                            SoulBrazierUtils.syncPermWarp((EntityPlayerMP) player);
+                        }
                     }
                     // Queue warp addition to file for next join.
                     else {
