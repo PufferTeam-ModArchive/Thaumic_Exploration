@@ -1,16 +1,18 @@
 package flaxbeard.thaumicexploration.gui;
 
-import cpw.mods.fml.common.network.IGuiHandler;
-import flaxbeard.thaumicexploration.tile.TileEntityAutoCrafter;
-import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
-import flaxbeard.thaumicexploration.tile.TileEntityThinkTank;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.common.network.IGuiHandler;
+import flaxbeard.thaumicexploration.tile.TileEntityAutoCrafter;
+import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
+import flaxbeard.thaumicexploration.tile.TileEntityThinkTank;
+
 public class TXGuiHandler implements IGuiHandler {
+
     public TXGuiHandler() {}
 
     @Override

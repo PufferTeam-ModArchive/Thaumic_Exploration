@@ -1,9 +1,8 @@
 package flaxbeard.thaumicexploration.tile;
 
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.event.DamageSourceTX;
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -15,6 +14,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.ThaumcraftApi.EntityTags;
 import thaumcraft.api.aspects.Aspect;
@@ -24,6 +24,8 @@ import thaumcraft.api.aspects.IEssentiaTransport;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.entities.golems.EntityGolemBase;
 import thaumcraft.common.entities.monster.EntityThaumicSlime;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.event.DamageSourceTX;
 
 public class TileEntityCrucibleSouls extends TileEntity implements IAspectContainer, IEssentiaTransport {
 
@@ -57,11 +59,11 @@ public class TileEntityCrucibleSouls extends TileEntity implements IAspectContai
         super.readFromNBT(par1NBTTagCompound);
         // this.drainTicks = par1NBTTagCompound.getInteger("drainTicks");
         this.myFlux = par1NBTTagCompound.getFloat("myFlux");
-        //    	if (this.drainTicks >0) {
-        //    		//this.targetMob = (EntityLivingBase)
+        // if (this.drainTicks >0) {
+        // //this.targetMob = (EntityLivingBase)
         // this.worldObj.getEntityByID(par1NBTTagCompound.getInteger("targetID"));
         //
-        //    	}
+        // }
         AspectList readAspects = new AspectList();
         NBTTagCompound aspects = par1NBTTagCompound.getCompoundTag("Aspects");
         Iterator iterator = Aspect.aspects.keySet().iterator();
@@ -164,10 +166,20 @@ public class TileEntityCrucibleSouls extends TileEntity implements IAspectContai
                 if (this.worldObj.isAirBlock(this.xCoord + x, this.yCoord + y, this.zCoord + z)) {
                     if (this.worldObj.rand.nextBoolean()) {
                         this.worldObj.setBlock(
-                                this.xCoord + x, this.yCoord + y, this.zCoord + z, ConfigBlocks.blockFluxGas, 0, 3);
+                                this.xCoord + x,
+                                this.yCoord + y,
+                                this.zCoord + z,
+                                ConfigBlocks.blockFluxGas,
+                                0,
+                                3);
                     } else {
                         this.worldObj.setBlock(
-                                this.xCoord + x, this.yCoord + y, this.zCoord + z, ConfigBlocks.blockFluxGoo, 0, 3);
+                                this.xCoord + x,
+                                this.yCoord + y,
+                                this.zCoord + z,
+                                ConfigBlocks.blockFluxGoo,
+                                0,
+                                3);
                     }
                 }
             }
@@ -200,9 +212,10 @@ public class TileEntityCrucibleSouls extends TileEntity implements IAspectContai
                 if (this.targetMob != null && this.targetMob.getHealth() > 0) {
                     double slope = (((this.zCoord + 0.5F) - this.targetMob.posZ)
                             / ((this.xCoord + 0.5F) - this.targetMob.posX));
-                    float myDistance = (float) Math.sqrt(Math.pow(this.xCoord - this.targetMob.posX, 2)
-                            + Math.pow(this.yCoord - this.targetMob.posY, 2)
-                            + Math.pow(this.zCoord - this.targetMob.posZ, 2));
+                    float myDistance = (float) Math.sqrt(
+                            Math.pow(this.xCoord - this.targetMob.posX, 2)
+                                    + Math.pow(this.yCoord - this.targetMob.posY, 2)
+                                    + Math.pow(this.zCoord - this.targetMob.posZ, 2));
                     double xChange = (Math.cos(slope) / 75.0D) * myDistance;
                     double zChange = (Math.sin(slope) / 75.0D) * myDistance;
                     if (this.zCoord > this.targetMob.posZ && zChange < 0) {
@@ -254,8 +267,7 @@ public class TileEntityCrucibleSouls extends TileEntity implements IAspectContai
 
                                             tag.aspects.aspects.keySet().iterator();
 
-                                            Iterator iterator =
-                                                    tag.aspects.aspects.keySet().iterator();
+                                            Iterator iterator = tag.aspects.aspects.keySet().iterator();
 
                                             int i = 0;
                                             while (iterator.hasNext()) {
@@ -269,10 +281,12 @@ public class TileEntityCrucibleSouls extends TileEntity implements IAspectContai
                                                                 if (!((Aspect) next).isPrimal()) {
                                                                     if (this.worldObj.rand.nextBoolean()) {
                                                                         this.myAspects.add(
-                                                                                ((Aspect) next).getComponents()[0], 1);
+                                                                                ((Aspect) next).getComponents()[0],
+                                                                                1);
                                                                     } else {
                                                                         this.myAspects.add(
-                                                                                ((Aspect) next).getComponents()[1], 1);
+                                                                                ((Aspect) next).getComponents()[1],
+                                                                                1);
                                                                     }
                                                                 } else {
                                                                     this.myAspects.add((Aspect) next, 1);
@@ -321,12 +335,11 @@ public class TileEntityCrucibleSouls extends TileEntity implements IAspectContai
                                     this.yCoord + this.yRange,
                                     this.zCoord + this.range));
                     for (EntityLivingBase mob : mobs) {
-                        if (!(mob instanceof EntityPlayer)
-                                && !(mob instanceof EntityThaumicSlime)
+                        if (!(mob instanceof EntityPlayer) && !(mob instanceof EntityThaumicSlime)
                                 && !(mob instanceof EntityGolemBase)) {
-                            float myDistance = (float) Math.sqrt(Math.pow(this.xCoord - mob.posX, 2)
-                                    + Math.pow(this.yCoord - mob.posY, 2)
-                                    + Math.pow(this.zCoord - mob.posZ, 2));
+                            float myDistance = (float) Math.sqrt(
+                                    Math.pow(this.xCoord - mob.posX, 2) + Math.pow(this.yCoord - mob.posY, 2)
+                                            + Math.pow(this.zCoord - mob.posZ, 2));
                             if (myDistance < distance) {
                                 this.drainTicks = (int) (mob.getMaxHealth() * 10);
                                 this.targetMob = mob;
@@ -442,11 +455,11 @@ public class TileEntityCrucibleSouls extends TileEntity implements IAspectContai
         return (face != ForgeDirection.UP);
     }
 
-    //	@Override
-    //	public void setSuction(AspectList suction) {
-    //		// TODO Auto-generated method stub
+    // @Override
+    // public void setSuction(AspectList suction) {
+    // // TODO Auto-generated method stub
     //
-    //	}
+    // }
 
     @Override
     public void setSuction(Aspect aspect, int amount) {
@@ -454,16 +467,16 @@ public class TileEntityCrucibleSouls extends TileEntity implements IAspectContai
 
     }
 
-    //	@Override
-    //	public AspectList getSuction(ForgeDirection face) {
-    //		// TODO Auto-generated method stub
-    //		AspectList AL = new AspectList();
-    //		Iterator iterator =  Aspect.aspects.keySet().iterator();
-    //		while (iterator.hasNext()) {
-    //			AL.add(Aspect.getAspect((String) iterator.next()), 0);
-    //		}
-    //		return AL;
-    //	}
+    // @Override
+    // public AspectList getSuction(ForgeDirection face) {
+    // // TODO Auto-generated method stub
+    // AspectList AL = new AspectList();
+    // Iterator iterator = Aspect.aspects.keySet().iterator();
+    // while (iterator.hasNext()) {
+    // AL.add(Aspect.getAspect((String) iterator.next()), 0);
+    // }
+    // return AL;
+    // }
 
     @Override
     public int takeEssentia(Aspect aspect, int amount, ForgeDirection arg2) {
@@ -485,11 +498,11 @@ public class TileEntityCrucibleSouls extends TileEntity implements IAspectContai
         }
     }
 
-    //	@Override
-    //	public AspectList getEssentia(ForgeDirection face) {
-    //		// TODO Auto-generated method stub
-    //		return null;
-    //	}
+    // @Override
+    // public AspectList getEssentia(ForgeDirection face) {
+    // // TODO Auto-generated method stub
+    // return null;
+    // }
 
     @Override
     public int getMinimumSuction() {

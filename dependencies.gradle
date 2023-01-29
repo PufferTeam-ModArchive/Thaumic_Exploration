@@ -22,6 +22,6 @@ dependencies {
     compileOnly("com.github.GTNewHorizons:waila:1.5.21:api") {
         transitive = false
     }
-    runtime("com.github.GTNewHorizons:CodeChickenCore:1.1.5:dev")  // Allow obfuscated Witchery to run in dev
-    runtime("com.github.GTNewHorizons:NotEnoughItems:2.2.20-GTNH:dev")
+    runtimeOnly("com.github.GTNewHorizons:CodeChickenCore:1.1.5:dev")  // Allow obfuscated Witchery to run in dev
+    runtimeOnly("com.github.GTNewHorizons:NotEnoughItems:2.2.20-GTNH:dev")
 }

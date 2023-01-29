@@ -1,17 +1,15 @@
 package flaxbeard.thaumicexploration.research;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.common.ConfigTX;
-import flaxbeard.thaumicexploration.item.ItemBaubleDiscountRing;
 import java.util.Arrays;
 import java.util.List;
+
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.CraftingManager;
 import net.minecraft.item.crafting.IRecipe;
+
 import thaumcraft.api.ThaumcraftApi;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
@@ -24,6 +22,10 @@ import thaumcraft.api.wands.WandRod;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.config.ConfigResearch;
+import cpw.mods.fml.common.registry.GameRegistry;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.common.ConfigTX;
+import flaxbeard.thaumicexploration.item.ItemBaubleDiscountRing;
 
 public final class ModRecipes {
 
@@ -40,73 +42,32 @@ public final class ModRecipes {
 
     private static void initConstructRecipes() {
 
-        registerResearchItemC("BUILDTHINKTANK", Arrays.asList(new Object[] {
-            new AspectList(),
-            Integer.valueOf(3),
-            Integer.valueOf(3),
-            Integer.valueOf(3),
-            Arrays.asList(new ItemStack[] {
-                empty, empty, empty,
-                empty, empty, empty,
-                empty, empty, empty,
-                empty, empty, empty,
-                empty, new ItemStack(ThaumicExploration.thinkTankJar), empty,
-                empty, empty, empty,
-                empty, empty, empty,
-                empty, new ItemStack(Blocks.bookshelf), empty,
-                empty, empty, empty
-            })
-        }));
-        registerResearchItemC("BUILDNECROINFUSION", Arrays.asList(new Object[] {
-            new AspectList(),
-            Integer.valueOf(7),
-            Integer.valueOf(1),
-            Integer.valueOf(6),
-            Arrays.asList(new ItemStack[] {
-                empty,
-                new ItemStack(ConfigBlocks.blockCandle),
-                empty,
-                empty,
-                empty,
-                new ItemStack(ConfigBlocks.blockCandle),
-                empty,
-                empty,
-                empty,
-                empty,
-                new ItemStack(Blocks.skull),
-                empty,
-                empty,
-                empty,
-                empty,
-                empty,
-                new ItemStack(Blocks.skull),
-                new ItemStack(ThaumicExploration.itemAltar),
-                new ItemStack(Blocks.skull),
-                empty,
-                empty,
-                new ItemStack(ConfigBlocks.blockCandle),
-                empty,
-                empty,
-                new ItemStack(Blocks.skull),
-                empty,
-                empty,
-                new ItemStack(ConfigBlocks.blockCandle),
-                empty,
-                empty,
-                empty,
-                empty,
-                empty,
-                empty,
-                empty,
-                empty,
-                empty,
-                empty,
-                new ItemStack(ConfigBlocks.blockCandle),
-                empty,
-                empty,
-                empty
-            })
-        }));
+        registerResearchItemC(
+                "BUILDTHINKTANK",
+                Arrays.asList(
+                        new Object[] { new AspectList(), Integer.valueOf(3), Integer.valueOf(3), Integer.valueOf(3),
+                                Arrays.asList(
+                                        new ItemStack[] { empty, empty, empty, empty, empty, empty, empty, empty, empty,
+                                                empty, empty, empty, empty,
+                                                new ItemStack(ThaumicExploration.thinkTankJar), empty, empty, empty,
+                                                empty, empty, empty, empty, empty, new ItemStack(Blocks.bookshelf),
+                                                empty, empty, empty, empty }) }));
+        registerResearchItemC(
+                "BUILDNECROINFUSION",
+                Arrays.asList(
+                        new Object[] { new AspectList(), Integer.valueOf(7), Integer.valueOf(1), Integer.valueOf(6),
+                                Arrays.asList(
+                                        new ItemStack[] { empty, new ItemStack(ConfigBlocks.blockCandle), empty, empty,
+                                                empty, new ItemStack(ConfigBlocks.blockCandle), empty, empty, empty,
+                                                empty, new ItemStack(Blocks.skull), empty, empty, empty, empty, empty,
+                                                new ItemStack(Blocks.skull),
+                                                new ItemStack(ThaumicExploration.itemAltar),
+                                                new ItemStack(Blocks.skull), empty, empty,
+                                                new ItemStack(ConfigBlocks.blockCandle), empty, empty,
+                                                new ItemStack(Blocks.skull), empty, empty,
+                                                new ItemStack(ConfigBlocks.blockCandle), empty, empty, empty, empty,
+                                                empty, empty, empty, empty, empty, empty,
+                                                new ItemStack(ConfigBlocks.blockCandle), empty, empty, empty }) }));
     }
 
     private static void initInfusionRecipes() {
@@ -206,13 +167,8 @@ public final class ModRecipes {
                 "CRUCSOULS",
                 new ItemStack(ThaumicExploration.crucibleSouls),
                 5,
-                new AspectList()
-                        .add(Aspect.DEATH, 40)
-                        .add(Aspect.UNDEAD, 10)
-                        .add(Aspect.HUNGER, 20)
-                        .add(Aspect.TRAP, 20)
-                        .add(Aspect.WEAPON, 5)
-                        .add(Aspect.SOUL, 30),
+                new AspectList().add(Aspect.DEATH, 40).add(Aspect.UNDEAD, 10).add(Aspect.HUNGER, 20)
+                        .add(Aspect.TRAP, 20).add(Aspect.WEAPON, 5).add(Aspect.SOUL, 30),
                 new ItemStack(ConfigBlocks.blockStoneDevice, 1, 0),
                 new ItemStack(ConfigBlocks.blockMetalDevice, 1, 0),
                 new ItemStack(Items.rotten_flesh),
@@ -225,10 +181,7 @@ public final class ModRecipes {
                 "TRASHJAR",
                 new ItemStack(ThaumicExploration.trashJar),
                 7,
-                new AspectList()
-                        .add(Aspect.ENTROPY, 16)
-                        .add(Aspect.VOID, 12)
-                        .add(Aspect.HUNGER, 12)
+                new AspectList().add(Aspect.ENTROPY, 16).add(Aspect.VOID, 12).add(Aspect.HUNGER, 12)
                         .add(Aspect.ELDRITCH, 12),
                 new ItemStack(ConfigBlocks.blockJar, 1, 3),
                 new ItemStack(ConfigBlocks.blockChestHungry),
@@ -244,11 +197,7 @@ public final class ModRecipes {
                 "ROD_NECROMANCER_staff",
                 new ItemStack(ThaumicExploration.necroStaffCore),
                 6,
-                new AspectList()
-                        .add(Aspect.DEATH, 32)
-                        .add(Aspect.ENTROPY, 16)
-                        .add(Aspect.SOUL, 16)
-                        .add(Aspect.AURA, 8),
+                new AspectList().add(Aspect.DEATH, 32).add(Aspect.ENTROPY, 16).add(Aspect.SOUL, 16).add(Aspect.AURA, 8),
                 new ItemStack(ConfigItems.itemWandRod, 1, 57),
                 new ItemStack(Items.skull, 1, 1),
                 new ItemStack(Items.rotten_flesh),
@@ -261,11 +210,7 @@ public final class ModRecipes {
                 "TENTACLERING",
                 new ItemStack(ThaumicExploration.tentacleRing),
                 4,
-                new AspectList()
-                        .add(Aspect.TAINT, 32)
-                        .add(Aspect.WEAPON, 8)
-                        .add(Aspect.ARMOR, 16)
-                        .add(Aspect.BEAST, 8),
+                new AspectList().add(Aspect.TAINT, 32).add(Aspect.WEAPON, 8).add(Aspect.ARMOR, 16).add(Aspect.BEAST, 8),
                 new ItemStack(ConfigItems.itemBaubleBlanks, 1, 1),
                 new ItemStack(ConfigItems.itemResource, 1, 11),
                 new ItemStack(ConfigItems.itemResource, 1, 12),
@@ -276,11 +221,7 @@ public final class ModRecipes {
                 "STABILIZERBELT",
                 new ItemStack(ThaumicExploration.stabilizerBelt),
                 3,
-                new AspectList()
-                        .add(Aspect.ORDER, 12)
-                        .add(Aspect.EARTH, 12)
-                        .add(Aspect.ARMOR, 4)
-                        .add(Aspect.TRAVEL, 8),
+                new AspectList().add(Aspect.ORDER, 12).add(Aspect.EARTH, 12).add(Aspect.ARMOR, 4).add(Aspect.TRAVEL, 8),
                 new ItemStack(ConfigItems.itemBaubleBlanks, 1, 2),
                 new ItemStack(Items.iron_ingot),
                 new ItemStack(Items.iron_ingot),
@@ -289,24 +230,21 @@ public final class ModRecipes {
                 new ItemStack(ConfigItems.itemShard, 1, 4),
                 new ItemStack(ConfigItems.itemShard, 1, 3));
 
-        //		for (int i = 0; i<16; i++) {
-        //			registerResearchItemI("CHESTSEAL", new ItemStack(ThaumicExploration.chestSeal, 1, i), 7,
-        //					new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE,4).add(Aspect.VOID, 4).add(Aspect.TRAP,
+        // for (int i = 0; i<16; i++) {
+        // registerResearchItemI("CHESTSEAL", new ItemStack(ThaumicExploration.chestSeal, 1, i), 7,
+        // new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE,4).add(Aspect.VOID, 4).add(Aspect.TRAP,
         // 4).add(Aspect.TRAVEL, 12),
-        //					new ItemStack(ThaumicExploration.blankSeal, 1, i), new ItemStack(Items.enderPearl),
-        //					new ItemStack(ConfigItems.itemResource,1,14), new ItemStack(ConfigItems.itemResource,1,14),
-        //					new ItemStack(Items.blazePowder), new ItemStack(Blocks.chest),  new
+        // new ItemStack(ThaumicExploration.blankSeal, 1, i), new ItemStack(Items.enderPearl),
+        // new ItemStack(ConfigItems.itemResource,1,14), new ItemStack(ConfigItems.itemResource,1,14),
+        // new ItemStack(Items.blazePowder), new ItemStack(Blocks.chest), new
         // ItemStack(ConfigItems.itemResource,1,3));
-        //		}
+        // }
 
         registerResearchItemI(
                 "METEORBOOTS",
                 new ItemStack(ThaumicExploration.bootsMeteor),
                 4,
-                new AspectList()
-                        .add(Aspect.FIRE, 25)
-                        .add(Aspect.ENERGY, 25)
-                        .add(Aspect.TRAVEL, 25)
+                new AspectList().add(Aspect.FIRE, 25).add(Aspect.ENERGY, 25).add(Aspect.TRAVEL, 25)
                         .add(Aspect.FLIGHT, 25),
                 new ItemStack(ConfigItems.itemBootsTraveller, 1, 32767),
                 new ItemStack(ConfigBlocks.blockCrystal, 1, 1),
@@ -343,10 +281,7 @@ public final class ModRecipes {
                     "ENCHNIGHTVISION",
                     Enchantment.enchantmentsList[ThaumicExploration.enchantmentNightVision.effectId],
                     5,
-                    new AspectList()
-                            .add(Aspect.SENSES, 16)
-                            .add(Aspect.DARKNESS, 8)
-                            .add(Aspect.LIGHT, 16),
+                    new AspectList().add(Aspect.SENSES, 16).add(Aspect.DARKNESS, 8).add(Aspect.LIGHT, 16),
                     new ItemStack(Items.golden_carrot),
                     new ItemStack(ConfigItems.itemResource, 1, 14),
                     new ItemStack(Items.golden_carrot));
@@ -356,12 +291,8 @@ public final class ModRecipes {
                 "TALISMANFOOD",
                 new ItemStack(ThaumicExploration.talismanFood),
                 5,
-                new AspectList()
-                        .add(Aspect.HUNGER, 30)
-                        .add(Aspect.FLESH, 25)
-                        .add(Aspect.CROP, 25)
-                        .add(Aspect.EXCHANGE, 10)
-                        .add(Aspect.VOID, 32),
+                new AspectList().add(Aspect.HUNGER, 30).add(Aspect.FLESH, 25).add(Aspect.CROP, 25)
+                        .add(Aspect.EXCHANGE, 10).add(Aspect.VOID, 32),
                 new ItemStack(ConfigItems.itemResource, 1, 15),
                 new ItemStack(Blocks.obsidian),
                 new ItemStack(Items.cooked_beef),
@@ -376,10 +307,7 @@ public final class ModRecipes {
                 "REPLICATOR",
                 new ItemStack(ThaumicExploration.replicator),
                 9,
-                new AspectList()
-                        .add(Aspect.CRAFT, 50)
-                        .add(Aspect.MECHANISM, 30)
-                        .add(Aspect.TOOL, 30)
+                new AspectList().add(Aspect.CRAFT, 50).add(Aspect.MECHANISM, 30).add(Aspect.TOOL, 30)
                         .add(Aspect.ORDER, 20),
                 new ItemStack(ConfigBlocks.blockStoneDevice, 1, 2),
                 new ItemStack(ConfigBlocks.blockTable, 1, 15),
@@ -394,10 +322,7 @@ public final class ModRecipes {
                 "COMETBOOTS",
                 new ItemStack(ThaumicExploration.bootsComet),
                 4,
-                new AspectList()
-                        .add(Aspect.WATER, 25)
-                        .add(Aspect.COLD, 25)
-                        .add(Aspect.TRAVEL, 25)
+                new AspectList().add(Aspect.WATER, 25).add(Aspect.COLD, 25).add(Aspect.TRAVEL, 25)
                         .add(Aspect.MOTION, 25),
                 new ItemStack(ConfigItems.itemBootsTraveller, 1, 32767),
                 new ItemStack(ConfigBlocks.blockCrystal, 1, 2),
@@ -406,25 +331,20 @@ public final class ModRecipes {
                 new ItemStack(Blocks.snow),
                 new ItemStack(ConfigItems.itemFocusFrost));
 
-        // 		registerResearchItemI("CHESTSEAL", new ItemStack(ThaumicExploration.chestSeal, 1, 32767), 7,
-        //				new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE,4).add(Aspect.VOID, 4).add(Aspect.TRAP,
+        // registerResearchItemI("CHESTSEAL", new ItemStack(ThaumicExploration.chestSeal, 1, 32767), 7,
+        // new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE,4).add(Aspect.VOID, 4).add(Aspect.TRAP,
         // 4).add(Aspect.TRAVEL, 12),
-        //				new ItemStack(ThaumicExploration.blankSeal, 1, 32767), new ItemStack(Items.enderPearl),
-        //				new ItemStack(ConfigItems.itemResource,1,14), new ItemStack(ConfigItems.itemResource,1,14),
-        //				new ItemStack(Items.blazePowder),new ItemStack(Blocks.chest),  new
+        // new ItemStack(ThaumicExploration.blankSeal, 1, 32767), new ItemStack(Items.enderPearl),
+        // new ItemStack(ConfigItems.itemResource,1,14), new ItemStack(ConfigItems.itemResource,1,14),
+        // new ItemStack(Items.blazePowder),new ItemStack(Blocks.chest), new
         // ItemStack(ConfigItems.itemResource,1,3));
 
         registerResearchItemI(
                 "THINKTANK",
                 new ItemStack(ThaumicExploration.thinkTankJar),
                 6,
-                new AspectList()
-                        .add(Aspect.GREED, 32)
-                        .add(Aspect.MIND, 48)
-                        .add(Aspect.SENSES, 32)
-                        .add(Aspect.UNDEAD, 32)
-                        .add(Aspect.ELDRITCH, 24)
-                        .add(Aspect.MAGIC, 16),
+                new AspectList().add(Aspect.GREED, 32).add(Aspect.MIND, 48).add(Aspect.SENSES, 32)
+                        .add(Aspect.UNDEAD, 32).add(Aspect.ELDRITCH, 24).add(Aspect.MAGIC, 16),
                 new ItemStack(ConfigBlocks.blockJar),
                 new ItemStack(ThaumicExploration.pureZombieBrain),
                 new ItemStack(ConfigItems.itemInkwell, 1, 0),
@@ -452,10 +372,7 @@ public final class ModRecipes {
                         "BURN",
                         new ItemStack(ThaumicExploration.everburnUrn),
                         2,
-                        new AspectList()
-                                .add(Aspect.FIRE, 20)
-                                .add(Aspect.VOID, 8)
-                                .add(Aspect.MAGIC, 4),
+                        new AspectList().add(Aspect.FIRE, 20).add(Aspect.VOID, 8).add(Aspect.MAGIC, 4),
                         new ItemStack(Items.flower_pot),
                         new ItemStack(Items.lava_bucket),
                         new ItemStack(Items.brick),
@@ -470,10 +387,7 @@ public final class ModRecipes {
                 "NECROINFUSION",
                 new ItemStack(ThaumicExploration.itemAltar),
                 7,
-                new AspectList()
-                        .add(Aspect.MAGIC, 32)
-                        .add(Aspect.DEATH, 16)
-                        .add(Aspect.UNDEAD, 16)
+                new AspectList().add(Aspect.MAGIC, 32).add(Aspect.DEATH, 16).add(Aspect.UNDEAD, 16)
                         .add(Aspect.CRAFT, 16),
                 new ItemStack(ConfigBlocks.blockStoneDevice, 1, 1),
                 new ItemStack(Blocks.netherrack),
@@ -485,10 +399,7 @@ public final class ModRecipes {
                 "CAP_SOJOURNER",
                 new ItemStack(ThaumicExploration.sojournerCap),
                 5,
-                new AspectList()
-                        .add(Aspect.AURA, 6)
-                        .add(Aspect.MAGIC, 12)
-                        .add(Aspect.EXCHANGE, 16)
+                new AspectList().add(Aspect.AURA, 6).add(Aspect.MAGIC, 12).add(Aspect.EXCHANGE, 16)
                         .add(Aspect.ENERGY, 12),
                 new ItemStack(ThaumicExploration.sojournerCapUncharged),
                 new ItemStack(ConfigItems.itemResource, 1, 14),
@@ -498,44 +409,41 @@ public final class ModRecipes {
                 "CAP_MECHANIST",
                 new ItemStack(ThaumicExploration.mechanistCap),
                 5,
-                new AspectList()
-                        .add(Aspect.MECHANISM, 16)
-                        .add(Aspect.MAGIC, 12)
-                        .add(Aspect.AURA, 6)
+                new AspectList().add(Aspect.MECHANISM, 16).add(Aspect.MAGIC, 12).add(Aspect.AURA, 6)
                         .add(Aspect.ENERGY, 12),
                 new ItemStack(ThaumicExploration.mechanistCapUncharged),
                 new ItemStack(ConfigItems.itemResource, 1, 14),
                 new ItemStack(ConfigItems.itemResource, 1, 14));
 
-        //		for (int i = 0; i<16; i++) {
-        //			registerResearchItemI("JARSEAL", new ItemStack(ThaumicExploration.jarSeal, 1, i), 7,
-        //					new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE,4).add(Aspect.TRAP, 4).add(Aspect.TRAVEL,
+        // for (int i = 0; i<16; i++) {
+        // registerResearchItemI("JARSEAL", new ItemStack(ThaumicExploration.jarSeal, 1, i), 7,
+        // new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE,4).add(Aspect.TRAP, 4).add(Aspect.TRAVEL,
         // 12).add(Aspect.MAGIC, 2),
-        //					new ItemStack(ThaumicExploration.blankSeal, 1, i), new ItemStack(Items.enderPearl),
-        //					new ItemStack(ConfigItems.itemResource,1,14), new ItemStack(ConfigItems.itemResource,1,14),
-        //					new ItemStack(Items.blazePowder), new ItemStack(ConfigBlocks.blockJar),  new
+        // new ItemStack(ThaumicExploration.blankSeal, 1, i), new ItemStack(Items.enderPearl),
+        // new ItemStack(ConfigItems.itemResource,1,14), new ItemStack(ConfigItems.itemResource,1,14),
+        // new ItemStack(Items.blazePowder), new ItemStack(ConfigBlocks.blockJar), new
         // ItemStack(ConfigItems.itemResource,1,3));
-        //		}
-        //		registerResearchItemI("JARSEAL", new ItemStack(ThaumicExploration.jarSeal, 1, 32767), 7,
-        //				new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE,4).add(Aspect.TRAP, 4).add(Aspect.TRAVEL,
+        // }
+        // registerResearchItemI("JARSEAL", new ItemStack(ThaumicExploration.jarSeal, 1, 32767), 7,
+        // new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE,4).add(Aspect.TRAP, 4).add(Aspect.TRAVEL,
         // 12).add(Aspect.MAGIC, 2),
-        //				new ItemStack(ThaumicExploration.blankSeal, 1, 32767), new ItemStack(Items.enderPearl),
-        //				new ItemStack(ConfigItems.itemResource,1,14), new ItemStack(ConfigItems.itemResource,1,14),
-        //				new ItemStack(Items.blazePowder), new ItemStack(ConfigBlocks.blockJar),  new
+        // new ItemStack(ThaumicExploration.blankSeal, 1, 32767), new ItemStack(Items.enderPearl),
+        // new ItemStack(ConfigItems.itemResource,1,14), new ItemStack(ConfigItems.itemResource,1,14),
+        // new ItemStack(Items.blazePowder), new ItemStack(ConfigBlocks.blockJar), new
         // ItemStack(ConfigItems.itemResource,1,3));
         //
         // Change Advanced golem recipe to require a pure brain
-        //		if (ThaumicExploration.brainsGolem) {
-        //	        InfusionRecipe recipe = (InfusionRecipe) ConfigResearch.recipes.get("AdvancedGolem");
-        //	        ConfigResearch.recipes.remove(ConfigResearch.recipes.get("AdvancedGolem"));
-        //	        ItemStack[] components = {new ItemStack(Items.redstone), new ItemStack(Items.glowstone_dust), new
+        // if (ThaumicExploration.brainsGolem) {
+        // InfusionRecipe recipe = (InfusionRecipe) ConfigResearch.recipes.get("AdvancedGolem");
+        // ConfigResearch.recipes.remove(ConfigResearch.recipes.get("AdvancedGolem"));
+        // ItemStack[] components = {new ItemStack(Items.redstone), new ItemStack(Items.glowstone_dust), new
         // ItemStack(Items.gunpowder), new ItemStack(ConfigBlocks.blockJar, 1, 0), new
         // ItemStack(ThaumicExploration.pureZombieBrain) };
-        //	        recipe. = components;
-        //	        InfusionRecipe recipe2 = ThaumcraftApi.addInfusionCraftingRecipe("ADVANCEDGOLEM",
+        // recipe. = components;
+        // InfusionRecipe recipe2 = ThaumcraftApi.addInfusionCraftingRecipe("ADVANCEDGOLEM",
         // recipe.recipeOutput, recipe.instability, recipe.aspects, recipe.recipeInput, recipe.components);
-        //			ConfigResearch.recipes.put("AdvancedGolem", recipe2);
-        //		}
+        // ConfigResearch.recipes.put("AdvancedGolem", recipe2);
+        // }
 
     }
 
@@ -700,12 +608,8 @@ public final class ModRecipes {
                     "CHESTSEAL",
                     new ItemStack(ThaumicExploration.chestSeal, 1, i),
                     new ItemStack(ThaumicExploration.blankSeal, 1, i),
-                    new AspectList()
-                            .add(Aspect.ELDRITCH, 6)
-                            .add(Aspect.EXCHANGE, 4)
-                            .add(Aspect.VOID, 4)
-                            .add(Aspect.TRAP, 4)
-                            .add(Aspect.TRAVEL, 6));
+                    new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE, 4).add(Aspect.VOID, 4)
+                            .add(Aspect.TRAP, 4).add(Aspect.TRAVEL, 6));
         }
 
         for (int i = 0; i < 16; i++) {
@@ -714,12 +618,8 @@ public final class ModRecipes {
                     "JARSEAL",
                     new ItemStack(ThaumicExploration.jarSeal, 1, i),
                     new ItemStack(ThaumicExploration.blankSeal, 1, i),
-                    new AspectList()
-                            .add(Aspect.ELDRITCH, 6)
-                            .add(Aspect.EXCHANGE, 4)
-                            .add(Aspect.CRYSTAL, 4)
-                            .add(Aspect.TRAP, 4)
-                            .add(Aspect.TRAVEL, 6));
+                    new AspectList().add(Aspect.ELDRITCH, 6).add(Aspect.EXCHANGE, 4).add(Aspect.CRYSTAL, 4)
+                            .add(Aspect.TRAP, 4).add(Aspect.TRAVEL, 6));
         }
         // registerCrucibleRecipe("CHESTSEAL","CHESTSEAL", new ItemStack(ThaumicExploration.chestSeal,1,1), new
         // ItemStack(ThaumicExploration.blankSeal,1,32767),
@@ -728,19 +628,19 @@ public final class ModRecipes {
     }
 
     public static void initNecromanticRecipes() {
-        //		  NecromanticAltarAPI.addNecroRecipeWithThaumnomiconDisplay("ROD_NECROMANCER", new
+        // NecromanticAltarAPI.addNecroRecipeWithThaumnomiconDisplay("ROD_NECROMANCER", new
         // NecromanticRecipe("NECROWAND", new ItemStack(ThaumicExploration.necroCore), new ItemStack[]{new
         // ItemStack(Items.skull,1,1),new ItemStack(Items.bone),new ItemStack(Items.bone),new
         // ItemStack(ConfigItems.itemResource,1,14),new ItemStack(ConfigItems.itemResource,1,14)}, 25));
-        //		  NecromanticAltarAPI.addEnergyToItem(Items.rottenFlesh,1);
-        //		  NecromanticAltarAPI.addEnergyToItem(Items.bone,2);
-        //		  NecromanticAltarAPI.addEnergyToItem(ConfigItems.itemResource,5,4);
-        //		  NecromanticAltarAPI.addEnergyToItem(Items.skull,1,5);
-        //		  NecromanticAltarAPI.addEnergyToItem(Items.appleRed,1);
+        // NecromanticAltarAPI.addEnergyToItem(Items.rottenFlesh,1);
+        // NecromanticAltarAPI.addEnergyToItem(Items.bone,2);
+        // NecromanticAltarAPI.addEnergyToItem(ConfigItems.itemResource,5,4);
+        // NecromanticAltarAPI.addEnergyToItem(Items.skull,1,5);
+        // NecromanticAltarAPI.addEnergyToItem(Items.appleRed,1);
     }
 
-    private static void registerResearchItem(
-            String name, String research, ItemStack output, AspectList aspects, Object... stuff) {
+    private static void registerResearchItem(String name, String research, ItemStack output, AspectList aspects,
+            Object... stuff) {
         ShapedArcaneRecipe recipe = ThaumcraftApi.addArcaneCraftingRecipe(research, output, aspects, stuff);
         ConfigResearch.recipes.put(name, recipe);
     }
@@ -751,68 +651,50 @@ public final class ModRecipes {
         if (name != null && name.length() != 0) ConfigResearch.recipes.put(name, recipeList.get(recipeList.size() - 1));
     }
 
-    private static void registerCrucibleRecipe(
-            String name, String research, ItemStack output, ItemStack input, AspectList aspects) {
+    private static void registerCrucibleRecipe(String name, String research, ItemStack output, ItemStack input,
+            AspectList aspects) {
         CrucibleRecipe recipe = ThaumcraftApi.addCrucibleRecipe(name, output, input, aspects);
         ConfigResearch.recipes.put(research, recipe);
     }
 
-    private static void registerResearchItemI(
-            String name, Object output, int instability, AspectList aspects, ItemStack input, ItemStack... stuff) {
-        InfusionRecipe recipe =
-                ThaumcraftApi.addInfusionCraftingRecipe(name, output, instability, aspects, input, stuff);
+    private static void registerResearchItemI(String name, Object output, int instability, AspectList aspects,
+            ItemStack input, ItemStack... stuff) {
+        InfusionRecipe recipe = ThaumcraftApi
+                .addInfusionCraftingRecipe(name, output, instability, aspects, input, stuff);
         ConfigResearch.recipes.put(name, recipe);
     }
 
-    private static void registerResearchItemShapeless(
-            String name, String research, ItemStack output, AspectList aspects, Object... stuff) {
+    private static void registerResearchItemShapeless(String name, String research, ItemStack output,
+            AspectList aspects, Object... stuff) {
         ShapelessArcaneRecipe recipe = ThaumcraftApi.addShapelessArcaneCraftingRecipe(research, output, aspects, stuff);
         ConfigResearch.recipes.put(name, recipe);
     }
 
-    private static void registerResearchItemI(
-            String name,
-            String research,
-            Object output,
-            int instability,
-            AspectList aspects,
-            ItemStack input,
-            ItemStack... stuff) {
-        InfusionRecipe recipe =
-                ThaumcraftApi.addInfusionCraftingRecipe(name, output, instability, aspects, input, stuff);
+    private static void registerResearchItemI(String name, String research, Object output, int instability,
+            AspectList aspects, ItemStack input, ItemStack... stuff) {
+        InfusionRecipe recipe = ThaumcraftApi
+                .addInfusionCraftingRecipe(name, output, instability, aspects, input, stuff);
         ConfigResearch.recipes.put(research, recipe);
     }
 
-    private static void registerResearchItemIUI(
-            String research,
-            String name,
-            Object output,
-            int instability,
-            AspectList aspects,
-            ItemStack input,
-            ItemStack... stuff) {
-        InfusionRecipe recipe =
-                ThaumcraftApi.addInfusionCraftingRecipe(name, output, instability, aspects, input, stuff);
+    private static void registerResearchItemIUI(String research, String name, Object output, int instability,
+            AspectList aspects, ItemStack input, ItemStack... stuff) {
+        InfusionRecipe recipe = ThaumcraftApi
+                .addInfusionCraftingRecipe(name, output, instability, aspects, input, stuff);
         ConfigResearch.recipes.put(research, recipe);
     }
 
-    private static void registerResearchItemIE(
-            String name, String research, Enchantment output, int instability, AspectList aspects, ItemStack... stuff) {
-        InfusionEnchantmentRecipe recipe =
-                ThaumcraftApi.addInfusionEnchantmentRecipe(name, output, instability, aspects, stuff);
+    private static void registerResearchItemIE(String name, String research, Enchantment output, int instability,
+            AspectList aspects, ItemStack... stuff) {
+        InfusionEnchantmentRecipe recipe = ThaumcraftApi
+                .addInfusionEnchantmentRecipe(name, output, instability, aspects, stuff);
         ConfigResearch.recipes.put(research, recipe);
     }
 
-    private static void registerResearchItemIU(
-            String research,
-            String name,
-            Object[] objects,
-            int instability,
-            AspectList aspects,
-            ItemStack input,
-            ItemStack... stuff) {
-        InfusionRecipe recipe =
-                ThaumcraftApi.addInfusionCraftingRecipe(name, objects, instability, aspects, input, stuff);
+    private static void registerResearchItemIU(String research, String name, Object[] objects, int instability,
+            AspectList aspects, ItemStack input, ItemStack... stuff) {
+        InfusionRecipe recipe = ThaumcraftApi
+                .addInfusionCraftingRecipe(name, objects, instability, aspects, input, stuff);
         ConfigResearch.recipes.put(research, recipe);
     }
 

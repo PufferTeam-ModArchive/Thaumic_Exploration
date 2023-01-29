@@ -1,6 +1,7 @@
 package flaxbeard.thaumicexploration.gui;
 
 import net.minecraft.inventory.IInventory;
+
 import thaumcraft.common.container.SlotGhost;
 
 public class SlotGhostSingular extends SlotGhost {

@@ -5,6 +5,7 @@ import net.minecraft.client.gui.GuiButton;
 import net.minecraft.util.ResourceLocation;
 
 public class GuiButtonSelector extends GuiButton {
+
     private static final ResourceLocation gui = new ResourceLocation("thaumicexploration:textures/gui/checkBox.png");
     int myID;
 

@@ -1,14 +1,15 @@
 package flaxbeard.thaumicexploration.data;
 
-import codechicken.lib.packet.PacketCustom;
-import flaxbeard.thaumicexploration.ThaumicExploration;
 import net.minecraft.client.Minecraft;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.INetHandlerPlayClient;
 import net.minecraft.util.Tuple;
 import net.minecraft.world.World;
+
 import thaumcraft.api.aspects.AspectList;
+import codechicken.lib.packet.PacketCustom;
+import flaxbeard.thaumicexploration.ThaumicExploration;
 
 /**
  * Created by Katrina on 16/06/2015.
@@ -18,8 +19,8 @@ public class BoundJarNetworkManager {
     public class BoundJarHandler implements PacketCustom.IClientPacketHandler {
 
         @Override
-        public void handlePacket(
-                PacketCustom packetCustom, Minecraft minecraft, INetHandlerPlayClient iNetHandlerPlayClient) {
+        public void handlePacket(PacketCustom packetCustom, Minecraft minecraft,
+                INetHandlerPlayClient iNetHandlerPlayClient) {
             String id = packetCustom.readString();
             if (!data.networks.containsKey(id)) data.networks.put(id, new AspectList());
             data.networks.get(id).readFromNBT(packetCustom.readNBTTagCompound());
@@ -39,8 +40,8 @@ public class BoundJarNetworkManager {
         World world = ThaumicExploration.proxy.getOverworld();
         if (world != null) {
 
-            data = (BoundJarNetworkData)
-                    world.mapStorage.loadData(BoundJarNetworkData.class, BoundJarNetworkData.IDENTIFIER);
+            data = (BoundJarNetworkData) world.mapStorage
+                    .loadData(BoundJarNetworkData.class, BoundJarNetworkData.IDENTIFIER);
             if (data == null) {
                 data = new BoundJarNetworkData();
                 data.markDirty();
@@ -73,7 +74,6 @@ public class BoundJarNetworkManager {
 
     public static void markDirty(String network) {
         markDirty();
-        PacketCustom.sendToClients(
-                getPacket(new Tuple(network, getData().networks.get(network))));
+        PacketCustom.sendToClients(getPacket(new Tuple(network, getData().networks.get(network))));
     }
 }

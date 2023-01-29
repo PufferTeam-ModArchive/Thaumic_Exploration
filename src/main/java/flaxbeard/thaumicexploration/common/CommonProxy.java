@@ -6,6 +6,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.common.DimensionManager;
 
 public class CommonProxy {
+
     // Client stuff
     public void registerRenderers() {
         // Nothing here as the server doesn't render graphics!
@@ -19,14 +20,14 @@ public class CommonProxy {
 
     public void spawnRandomWaterFountain(World worldObj, int xCoord, int yCoord, int zCoord) {}
 
-    public void spawnWaterAtLocation(
-            World worldObj, double xCoord, double yCoord, double zCoord, double dX, double dY, double dZ) {}
+    public void spawnWaterAtLocation(World worldObj, double xCoord, double yCoord, double zCoord, double dX, double dY,
+            double dZ) {}
 
-    public void spawnBoreSparkle(
-            World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2, double z2) {}
+    public void spawnBoreSparkle(World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2,
+            double z2) {}
 
-    public void spawnHarvestParticle(
-            World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2, double z2) {}
+    public void spawnHarvestParticle(World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2,
+            double z2) {}
 
     public void spawnActiveBrazierParticle(World worldObj, int xCoord, int yCoord, int zCoord) {}
 
@@ -34,30 +35,14 @@ public class CommonProxy {
         return true;
     }
 
-    public void spawnFragmentParticle(
-            World worldObj,
-            double xCoord,
-            double yCoord,
-            double zCoord,
-            double x2,
-            double y2,
-            double z2,
-            Block block,
-            int id) {
+    public void spawnFragmentParticle(World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2,
+            double z2, Block block, int id) {
         // TODO Auto-generated method stub
 
     }
 
-    public void spawnEssentiaAtLocation(
-            World worldObj,
-            double xCoord,
-            double yCoord,
-            double zCoord,
-            double dX,
-            double dY,
-            double dZ,
-            int size,
-            int color) {
+    public void spawnEssentiaAtLocation(World worldObj, double xCoord, double yCoord, double zCoord, double dX,
+            double dY, double dZ, int size, int color) {
         // TODO Auto-generated method stub
 
     }
@@ -67,28 +52,20 @@ public class CommonProxy {
 
     }
 
-    public void spawnLightningBolt(
-            World worldObj, double xCoord, double yCoord, double zCoord, double dX, double dY, double dZ) {
+    public void spawnLightningBolt(World worldObj, double xCoord, double yCoord, double zCoord, double dX, double dY,
+            double dZ) {
         // TODO Auto-generated method stub
 
     }
 
-    public void spawnHarvestParticleSlow(
-            World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2, double z2) {
+    public void spawnHarvestParticleSlow(World worldObj, double xCoord, double yCoord, double zCoord, double x2,
+            double y2, double z2) {
         // TODO Auto-generated method stub
 
     }
 
-    public void spawnFragmentParticleSlow(
-            World worldObj,
-            double xCoord,
-            double yCoord,
-            double zCoord,
-            double x2,
-            double y2,
-            double z2,
-            Block block,
-            int id) {
+    public void spawnFragmentParticleSlow(World worldObj, double xCoord, double yCoord, double zCoord, double x2,
+            double y2, double z2, Block block, int id) {
         // TODO Auto-generated method stub
 
     }

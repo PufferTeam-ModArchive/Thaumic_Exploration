@@ -1,12 +1,9 @@
 package flaxbeard.thaumicexploration.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.tile.TileEntityBoundJar;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -14,12 +11,17 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.common.blocks.BlockJar;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.items.ItemEssence;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.tile.TileEntityBoundJar;
 
 public class BlockBoundJar extends BlockJar {
 
@@ -40,11 +42,8 @@ public class BlockBoundJar extends BlockJar {
         par3List.add(new ItemStack(par1, 1, 0));
     }
     /*
-    @Override
-       public Item getItemDropped(int par1, Random par2Random, int par3)
-       {
-           return null;
-       }*/
+     * @Override public Item getItemDropped(int par1, Random par2Random, int par3) { return null; }
+     */
 
     public int quantityDropped(Random par1Random) {
         return 0;
@@ -62,27 +61,19 @@ public class BlockBoundJar extends BlockJar {
 
     @Override
     public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-        /*  ArrayList<ItemStack> drops = new ArrayList();
-        int md = world.getBlockMetadata(x, y, z);
-          TileEntity te = world.getTileEntity(x, y, z);
-          if ((te != null) && ((te instanceof TileJarFillable)))
-          {
-            ItemStack drop = new ItemStack(ConfigItems.itemJarFilled);
-            if ((((TileJarFillable)te).amount <= 0) && (((TileJarFillable)te).aspectFilter == null)) {
-              drop = new ItemStack(ConfigBlocks.blockJar);
-            }
-            if (((TileJarFillable)te).amount > 0) {
-              ((ItemJarFilled)drop.getItem()).setAspects(drop, new AspectList().add(((TileJarFillable)te).aspect, ((TileJarFillable)te).amount));
-            }
-
-            drops.add(drop);
-          }
-          return drops;
-        */
+        /*
+         * ArrayList<ItemStack> drops = new ArrayList(); int md = world.getBlockMetadata(x, y, z); TileEntity te =
+         * world.getTileEntity(x, y, z); if ((te != null) && ((te instanceof TileJarFillable))) { ItemStack drop = new
+         * ItemStack(ConfigItems.itemJarFilled); if ((((TileJarFillable)te).amount <= 0) &&
+         * (((TileJarFillable)te).aspectFilter == null)) { drop = new ItemStack(ConfigBlocks.blockJar); } if
+         * (((TileJarFillable)te).amount > 0) { ((ItemJarFilled)drop.getItem()).setAspects(drop, new
+         * AspectList().add(((TileJarFillable)te).aspect, ((TileJarFillable)te).amount)); } drops.add(drop); } return
+         * drops;
+         */
         ArrayList<ItemStack> drops = new ArrayList();
         /*
-        drops.add(new ItemStack(ConfigBlocks.blockJar)); //TODO this is somehow causing 2 jars to drop
-        return drops;*/
+         * drops.add(new ItemStack(ConfigBlocks.blockJar)); //TODO this is somehow causing 2 jars to drop return drops;
+         */
 
         TileEntity te = world.getTileEntity(x, y, z);
         if ((te != null) && ((te instanceof TileEntityBoundJar))) {
@@ -94,8 +85,8 @@ public class BlockBoundJar extends BlockJar {
     }
 
     @Override
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int par6, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int par6, float par7,
+            float par8, float par9) {
         if (!world.isRemote) {
             world.markBlockForUpdate(x, y, z);
         }
@@ -117,10 +108,8 @@ public class BlockBoundJar extends BlockJar {
             }
             amount = phial.getAspects(helditem).getAmount(aspect);
         }
-        if (helditem != null
-                && jar.amount <= (jar.maxAmount - 8)
-                && ((jar.aspect != null && jar.aspect != aspect && jar.amount == 0)
-                        || jar.aspect == null
+        if (helditem != null && jar.amount <= (jar.maxAmount - 8)
+                && ((jar.aspect != null && jar.aspect != aspect && jar.amount == 0) || jar.aspect == null
                         || (jar.aspect != null && jar.aspect == aspect && amount >= 8))) {
             player.getHeldItem().stackSize--;
             jar.aspect = aspect;

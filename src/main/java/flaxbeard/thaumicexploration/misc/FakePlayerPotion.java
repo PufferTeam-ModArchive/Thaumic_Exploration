@@ -1,12 +1,13 @@
 package flaxbeard.thaumicexploration.misc;
 
-import com.mojang.authlib.GameProfile;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.IChatComponent;
 import net.minecraft.world.World;
+
+import com.mojang.authlib.GameProfile;
 
 public class FakePlayerPotion extends EntityPlayer {
 
@@ -18,8 +19,8 @@ public class FakePlayerPotion extends EntityPlayer {
     @Override
     protected void onNewPotionEffect(PotionEffect par1PotionEffect) {
         if (!this.worldObj.isRemote) {
-            Potion.potionTypes[par1PotionEffect.getPotionID()].applyAttributesModifiersToEntity(
-                    this, this.getAttributeMap(), par1PotionEffect.getAmplifier());
+            Potion.potionTypes[par1PotionEffect.getPotionID()]
+                    .applyAttributesModifiersToEntity(this, this.getAttributeMap(), par1PotionEffect.getAmplifier());
         }
     }
 

@@ -1,15 +1,18 @@
 package flaxbeard.thaumicexploration.commands;
 
-import flaxbeard.thaumicexploration.tile.TileEntitySoulBrazier;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.command.ICommand;
 import net.minecraft.command.ICommandSender;
+
+import flaxbeard.thaumicexploration.tile.TileEntitySoulBrazier;
 
 /**
  * Created by Katrina on 03/11/2014.
  */
 public class CommandAlterRate implements ICommand {
+
     private List<String> aliases;
 
     public CommandAlterRate() {

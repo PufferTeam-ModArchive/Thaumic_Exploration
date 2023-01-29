@@ -1,17 +1,21 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import flaxbeard.thaumicexploration.ThaumicExploration;
 import java.awt.Color;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.world.IBlockAccess;
+
 import org.lwjgl.opengl.GL11;
+
 import thaumcraft.client.renderers.block.BlockRenderer;
 import thaumcraft.common.blocks.BlockCandle;
 import thaumcraft.common.lib.utils.Utils;
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import flaxbeard.thaumicexploration.ThaumicExploration;
 
 public class BlockFloatyCandleRenderer extends BlockRenderer implements ISimpleBlockRenderingHandler {
+
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
         Color c = new Color(Utils.colors[metadata]);
         float r = c.getRed() / 255.0F;
@@ -28,8 +32,8 @@ public class BlockFloatyCandleRenderer extends BlockRenderer implements ISimpleB
         drawFaces(renderer, block, ((BlockCandle) block).iconStub, true);
     }
 
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
         return false;
     }
 

@@ -1,8 +1,5 @@
 package flaxbeard.thaumicexploration.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.tile.TileEntityAutoCrafter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Items;
@@ -12,7 +9,12 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.inventory.SlotFurnace;
 import net.minecraft.item.ItemStack;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.tile.TileEntityAutoCrafter;
+
 public class ContainerAutoCrafter extends Container {
+
     private TileEntityAutoCrafter furnace;
     private int lastCookTime;
     private int lastBurnTime;
@@ -38,9 +40,9 @@ public class ContainerAutoCrafter extends Container {
 
     public void addCraftingToCrafters(ICrafting par1ICrafting) {
         super.addCraftingToCrafters(par1ICrafting);
-        //        par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
-        //        par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.furnaceBurnTime);
-        //        par1ICrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
+        // par1ICrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
+        // par1ICrafting.sendProgressBarUpdate(this, 1, this.furnace.furnaceBurnTime);
+        // par1ICrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
     }
 
     /**
@@ -52,39 +54,39 @@ public class ContainerAutoCrafter extends Container {
         for (int i = 0; i < this.crafters.size(); ++i) {
             ICrafting icrafting = (ICrafting) this.crafters.get(i);
 
-            //            if (this.lastCookTime != this.furnace.furnaceCookTime)
-            //            {
-            //                icrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
-            //            }
+            // if (this.lastCookTime != this.furnace.furnaceCookTime)
+            // {
+            // icrafting.sendProgressBarUpdate(this, 0, this.furnace.furnaceCookTime);
+            // }
             //
-            //            if (this.lastBurnTime != this.furnace.furnaceBurnTime)
-            //            {
-            //                icrafting.sendProgressBarUpdate(this, 1, this.furnace.furnaceBurnTime);
-            //            }
+            // if (this.lastBurnTime != this.furnace.furnaceBurnTime)
+            // {
+            // icrafting.sendProgressBarUpdate(this, 1, this.furnace.furnaceBurnTime);
+            // }
             //
-            //            if (this.lastItemBurnTime != this.furnace.currentItemBurnTime)
-            //            {
-            //                icrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
-            //            }
+            // if (this.lastItemBurnTime != this.furnace.currentItemBurnTime)
+            // {
+            // icrafting.sendProgressBarUpdate(this, 2, this.furnace.currentItemBurnTime);
+            // }
         }
 
-        //        this.lastCookTime = this.furnace.furnaceCookTime;
-        //        this.lastBurnTime = this.furnace.furnaceBurnTime;
-        //        this.lastItemBurnTime = this.furnace.currentItemBurnTime;
+        // this.lastCookTime = this.furnace.furnaceCookTime;
+        // this.lastBurnTime = this.furnace.furnaceBurnTime;
+        // this.lastItemBurnTime = this.furnace.currentItemBurnTime;
     }
 
     @SideOnly(Side.CLIENT)
     public void updateProgressBar(int par1, int par2) {
         if (par1 == 0) {
-            //            this.furnace.furnaceCookTime = par2;
+            // this.furnace.furnaceCookTime = par2;
         }
 
         if (par1 == 1) {
-            //            this.furnace.furnaceBurnTime = par2;
+            // this.furnace.furnaceBurnTime = par2;
         }
 
         if (par1 == 2) {
-            //            this.furnace.currentItemBurnTime = par2;
+            // this.furnace.currentItemBurnTime = par2;
         }
     }
 

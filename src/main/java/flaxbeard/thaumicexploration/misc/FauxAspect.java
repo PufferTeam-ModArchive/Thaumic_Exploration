@@ -1,6 +1,7 @@
 package flaxbeard.thaumicexploration.misc;
 
 import net.minecraft.util.ResourceLocation;
+
 import thaumcraft.api.aspects.Aspect;
 
 public class FauxAspect extends Aspect {

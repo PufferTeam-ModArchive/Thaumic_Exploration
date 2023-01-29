@@ -1,11 +1,8 @@
 package flaxbeard.thaumicexploration.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.tile.TileEntityBoundChest;
 import java.util.Iterator;
 import java.util.Random;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -28,7 +25,13 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.tile.TileEntityBoundChest;
+
 public class BlockBoundChest extends BlockContainer {
+
     private final Random random = new Random();
 
     /** 1 for trapped chests, 0 for normal chests. */
@@ -42,7 +45,7 @@ public class BlockBoundChest extends BlockContainer {
     }
 
     /**
-     * Is this block (a) opaque and (b) a full 1m cube?  This determines whether or not to render the shared face of two
+     * Is this block (a) opaque and (b) a full 1m cube? This determines whether or not to render the shared face of two
      * adjacent blocks and also whether the player can attach torches, redstone wire, etc to this block.
      */
     public boolean isOpaqueCube() {
@@ -81,12 +84,7 @@ public class BlockBoundChest extends BlockContainer {
     /**
      * Called when the block is placed in the world.
      */
-    public void onBlockPlacedBy(
-            World par1World,
-            int par2,
-            int par3,
-            int par4,
-            EntityLivingBase par5EntityLivingBase,
+    public void onBlockPlacedBy(World par1World, int par2, int par3, int par4, EntityLivingBase par5EntityLivingBase,
             ItemStack par6ItemStack) {
         // int l = par1World.getBlockId(par2, par3, par4 - 1);
         // int i1 = par1World.getBlockId(par2, par3, par4 + 1);
@@ -145,14 +143,10 @@ public class BlockBoundChest extends BlockContainer {
      * Checks the neighbor blocks to see if there is a chest there. Args: world, x, y, z
      */
     private boolean isThereANeighborChest(World par1World, int par2, int par3, int par4) {
-        return par1World.getBlock(par2, par3, par4) != this
-                ? false
-                : (par1World.getBlock(par2 - 1, par3, par4) == this
-                        ? true
-                        : (par1World.getBlock(par2 + 1, par3, par4) == this
-                                ? true
-                                : (par1World.getBlock(par2, par3, par4 - 1) == this
-                                        ? true
+        return par1World.getBlock(par2, par3, par4) != this ? false
+                : (par1World.getBlock(par2 - 1, par3, par4) == this ? true
+                        : (par1World.getBlock(par2 + 1, par3, par4) == this ? true
+                                : (par1World.getBlock(par2, par3, par4 - 1) == this ? true
                                         : par1World.getBlock(par2, par3, par4 + 1) == this)));
     }
 
@@ -175,9 +169,8 @@ public class BlockBoundChest extends BlockContainer {
             float f1 = this.random.nextFloat() * 0.8F + 0.1F;
             EntityItem entityitem;
 
-            for (float f2 = this.random.nextFloat() * 0.8F + 0.1F;
-                    itemstack.stackSize > 0;
-                    par1World.spawnEntityInWorld(entityitem)) {
+            for (float f2 = this.random.nextFloat() * 0.8F + 0.1F; itemstack.stackSize > 0; par1World
+                    .spawnEntityInWorld(entityitem)) {
                 int k1 = this.random.nextInt(21) + 10;
 
                 if (k1 > itemstack.stackSize) {
@@ -197,8 +190,7 @@ public class BlockBoundChest extends BlockContainer {
                 entityitem.motionZ = (double) ((float) this.random.nextGaussian() * f3);
 
                 if (itemstack.hasTagCompound()) {
-                    entityitem.getEntityItem().setTagCompound((NBTTagCompound)
-                            itemstack.getTagCompound().copy());
+                    entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                 }
             }
         }
@@ -236,16 +228,8 @@ public class BlockBoundChest extends BlockContainer {
     /**
      * Called upon block activation (right click on the block.)
      */
-    public boolean onBlockActivated(
-            World par1World,
-            int par2,
-            int par3,
-            int par4,
-            EntityPlayer par5EntityPlayer,
-            int par6,
-            float par7,
-            float par8,
-            float par9) {
+    public boolean onBlockActivated(World par1World, int par2, int par3, int par4, EntityPlayer par5EntityPlayer,
+            int par6, float par7, float par8, float par9) {
         if (par1World.isRemote) {
 
             return true;
@@ -321,16 +305,15 @@ public class BlockBoundChest extends BlockContainer {
      * chest.
      */
     public static boolean isOcelotBlockingChest(World par0World, int par1, int par2, int par3) {
-        Iterator iterator = par0World
-                .getEntitiesWithinAABB(
-                        EntityOcelot.class,
-                        AxisAlignedBB.getBoundingBox(
-                                (double) par1,
-                                (double) (par2 + 1),
-                                (double) par3,
-                                (double) (par1 + 1),
-                                (double) (par2 + 2),
-                                (double) (par3 + 1)))
+        Iterator iterator = par0World.getEntitiesWithinAABB(
+                EntityOcelot.class,
+                AxisAlignedBB.getBoundingBox(
+                        (double) par1,
+                        (double) (par2 + 1),
+                        (double) par3,
+                        (double) (par1 + 1),
+                        (double) (par2 + 2),
+                        (double) (par3 + 1)))
                 .iterator();
         EntityOcelot entityocelot;
 

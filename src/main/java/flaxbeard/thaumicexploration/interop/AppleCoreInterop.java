@@ -2,6 +2,7 @@ package flaxbeard.thaumicexploration.interop;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
 import squeek.applecore.api.AppleCoreAPI;
 
 /**

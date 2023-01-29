@@ -1,33 +1,20 @@
 package flaxbeard.thaumicexploration.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.awt.Color;
 import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class ItemChestSeal extends Item {
-    public static final String[] itemNames = {
-        "Pale",
-        "Orange",
-        "Magenta",
-        "Light Blue",
-        "Yellow",
-        "Lime",
-        "Pink",
-        "Gray",
-        "Light Gray",
-        "Cyan",
-        "Purple",
-        "Blue",
-        "Brown",
-        "Green",
-        "Red",
-        "Dark"
-    };
+
+    public static final String[] itemNames = { "Pale", "Orange", "Magenta", "Light Blue", "Yellow", "Lime", "Pink",
+            "Gray", "Light Gray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Dark" };
 
     public ItemChestSeal() {
         super();

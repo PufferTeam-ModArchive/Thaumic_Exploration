@@ -8,6 +8,7 @@ import net.minecraft.entity.Entity;
  * Created by nekosune on 03/08/14.
  */
 public class ModelSoulBrazier extends ModelBase {
+
     // fields
     ModelRenderer Base;
     ModelRenderer Prong1;

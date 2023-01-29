@@ -5,6 +5,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 
 public class EntityAINearestAttackableTargetSelectorReplacement implements IEntitySelector {
+
     final IEntitySelector field_111103_c;
 
     final EntityAINearestAttackablePureTarget field_111102_d;
@@ -20,10 +21,8 @@ public class EntityAINearestAttackableTargetSelectorReplacement implements IEnti
      * Return whether the specified entity is applicable to this filter.
      */
     public boolean isEntityApplicable(Entity par1Entity) {
-        return !(par1Entity instanceof EntityLivingBase)
-                ? false
-                : (this.field_111103_c != null && !this.field_111103_c.isEntityApplicable(par1Entity)
-                        ? false
+        return !(par1Entity instanceof EntityLivingBase) ? false
+                : (this.field_111103_c != null && !this.field_111103_c.isEntityApplicable(par1Entity) ? false
                         : this.field_111102_d.isSuitableTarget((EntityLivingBase) par1Entity, false));
     }
 }

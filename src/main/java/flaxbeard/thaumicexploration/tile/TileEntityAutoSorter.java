@@ -1,16 +1,19 @@
 package flaxbeard.thaumicexploration.tile;
 
-import flaxbeard.thaumicexploration.misc.SortingInventory;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
+
 import org.apache.commons.lang3.tuple.MutablePair;
+
+import flaxbeard.thaumicexploration.misc.SortingInventory;
 
 public class TileEntityAutoSorter extends TileEntity implements IInventory {
 
@@ -84,8 +87,8 @@ public class TileEntityAutoSorter extends TileEntity implements IInventory {
         }
     }
 
-    private boolean arrayContains(
-            ArrayList<MutablePair<int[], MutablePair>> array, MutablePair<int[], MutablePair> pair) {
+    private boolean arrayContains(ArrayList<MutablePair<int[], MutablePair>> array,
+            MutablePair<int[], MutablePair> pair) {
         boolean contains = false;
         for (MutablePair<int[], MutablePair> item : array) {
             if (Arrays.equals(pair.left, item.left) && pair.right.equals(item.right)) {

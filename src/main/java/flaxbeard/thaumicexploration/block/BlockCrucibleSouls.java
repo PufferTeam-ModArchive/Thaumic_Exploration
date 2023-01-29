@@ -1,9 +1,5 @@
 package flaxbeard.thaumicexploration.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.tile.TileEntityCrucibleSouls;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -12,6 +8,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.tile.TileEntityCrucibleSouls;
 
 public class BlockCrucibleSouls extends BlockContainer {
 
@@ -78,16 +79,16 @@ public class BlockCrucibleSouls extends BlockContainer {
         return new TileEntityCrucibleSouls();
     }
 
-    //    @SideOnly(Side.CLIENT)
-    //    public void registerIIcons(IIconRegister par1IIconRegister)
-    //    {
-    //       	super.registerIIcons(par1IIconRegister);
-    //        this.middleSide = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnMS");
-    //        this.topSide = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnTS");
-    //        this.topTop = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnTT");
-    //        this.bottomTop = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnBT");
-    //        this.bottomBottom = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnBB");
-    //        this.topBottom = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnTB");
-    //    }
+    // @SideOnly(Side.CLIENT)
+    // public void registerIIcons(IIconRegister par1IIconRegister)
+    // {
+    // super.registerIIcons(par1IIconRegister);
+    // this.middleSide = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnMS");
+    // this.topSide = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnTS");
+    // this.topTop = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnTT");
+    // this.bottomTop = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnBT");
+    // this.bottomBottom = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnBB");
+    // this.topBottom = par1IIconRegister.registerIIcon("thaumicExploration:everfullUrnTB");
+    // }
 
 }

@@ -1,13 +1,7 @@
 package flaxbeard.thaumicexploration.event;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.TickEvent;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
 import java.util.List;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityClientPlayerMP;
 import net.minecraft.entity.Entity;
@@ -16,7 +10,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
+
 import thaumcraft.client.fx.bolt.FXLightningBolt;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufOutputStream;
+import io.netty.buffer.Unpooled;
 
 public class TXTickHandler {
 
@@ -75,30 +77,30 @@ public class TXTickHandler {
                             this.watchTicks = 0;
                         }
 
-                        //						if (player.worldObj.rand.nextInt(2) == 0) {
-                        //						    FXBoreParticles fb = new FXBoreParticles(player.worldObj,
+                        // if (player.worldObj.rand.nextInt(2) == 0) {
+                        // FXBoreParticles fb = new FXBoreParticles(player.worldObj,
                         // this.pointedEntityLiving.posX, this.pointedEntityLiving.boundingBox.maxY - 0.5F,
                         // this.pointedEntityLiving.posZ, player.posX, player.boundingBox.minY + player.height / 2.0F +
                         // 0.25D, player.posZ, Item.coal, player.worldObj.rand.nextInt(6), 3);
                         //
                         //
-                        //						    fb.setAlphaF(0.3F);
-                        //							fb.motionX = ((float)player.worldObj.rand.nextGaussian() * 0.03F);
-                        //							fb.motionY = ((float)player.worldObj.rand.nextGaussian() * 0.03F);
-                        //							fb.motionZ = ((float)player.worldObj.rand.nextGaussian() * 0.03F);
-                        //						    FMLClientHandler.instance().getClient().effectRenderer.addEffect(fb);
-                        //						}
-                        //						else
-                        //						{
+                        // fb.setAlphaF(0.3F);
+                        // fb.motionX = ((float)player.worldObj.rand.nextGaussian() * 0.03F);
+                        // fb.motionY = ((float)player.worldObj.rand.nextGaussian() * 0.03F);
+                        // fb.motionZ = ((float)player.worldObj.rand.nextGaussian() * 0.03F);
+                        // FMLClientHandler.instance().getClient().effectRenderer.addEffect(fb);
+                        // }
+                        // else
+                        // {
                         //
-                        //						    FXBoreSparkle fb = new FXBoreSparkle(player.worldObj, this.pointedEntityLiving.posX,
+                        // FXBoreSparkle fb = new FXBoreSparkle(player.worldObj, this.pointedEntityLiving.posX,
                         // this.pointedEntityLiving.boundingBox.maxY - 0.5F, this.pointedEntityLiving.posZ, player.posX,
                         // player.boundingBox.minY + player.height / 2.0F + 0.25D, player.posZ);
                         //
-                        //						    fb.setRBGColorF(0.4F +player.worldObj.rand.nextFloat() * 0.2F, 0.2F, 0.6F +
+                        // fb.setRBGColorF(0.4F +player.worldObj.rand.nextFloat() * 0.2F, 0.2F, 0.6F +
                         // player.worldObj.rand.nextFloat() * 0.3F);
-                        //						    FMLClientHandler.instance().getClient().effectRenderer.addEffect(fb);
-                        //						}
+                        // FMLClientHandler.instance().getClient().effectRenderer.addEffect(fb);
+                        // }
                         this.watchTicks += 1;
                         if (this.watchTicks > 0) {
                             if (this.watchTicks % 5 == 0) {
@@ -127,8 +129,7 @@ public class TXTickHandler {
                                     out.writeByte(2);
                                     out.writeInt(Minecraft.getMinecraft().thePlayer.worldObj.provider.dimensionId);
                                     out.writeInt(this.pointedEntityLiving.getEntityId());
-                                    out.writeInt(
-                                            Minecraft.getMinecraft().thePlayer.getEntityId());
+                                    out.writeInt(Minecraft.getMinecraft().thePlayer.getEntityId());
                                     FMLProxyPacket packet = new FMLProxyPacket(buf, "tExploration");
                                     ThaumicExploration.channel.sendToServer(packet);
                                     out.close();
@@ -184,15 +185,11 @@ public class TXTickHandler {
                 Vec3 vec32 = vec3.addVector(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0);
                 this.pointedEntity = null;
                 float f1 = 1.0F;
-                List list = Minecraft.getMinecraft()
-                        .theWorld
-                        .getEntitiesWithinAABBExcludingEntity(
-                                Minecraft.getMinecraft().renderViewEntity,
-                                Minecraft.getMinecraft()
-                                        .renderViewEntity
-                                        .boundingBox
-                                        .addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0)
-                                        .expand((double) f1, (double) f1, (double) f1));
+                List list = Minecraft.getMinecraft().theWorld.getEntitiesWithinAABBExcludingEntity(
+                        Minecraft.getMinecraft().renderViewEntity,
+                        Minecraft.getMinecraft().renderViewEntity.boundingBox
+                                .addCoord(vec31.xCoord * d0, vec31.yCoord * d0, vec31.zCoord * d0)
+                                .expand((double) f1, (double) f1, (double) f1));
                 double d2 = d1;
 
                 for (int i = 0; i < list.size(); ++i) {

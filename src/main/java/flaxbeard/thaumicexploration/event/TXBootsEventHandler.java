@@ -1,12 +1,8 @@
 package flaxbeard.thaumicexploration.event;
 
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.common.ConfigTX;
-import flaxbeard.thaumicexploration.integration.TTIntegration;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.PlayerCapabilities;
@@ -20,6 +16,7 @@ import net.minecraft.util.Vec3;
 import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.event.entity.living.LivingEvent.LivingUpdateEvent;
+
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.nodes.INode;
@@ -28,6 +25,11 @@ import thaumcraft.common.Thaumcraft;
 import thaumcraft.common.config.ConfigItems;
 import thaumcraft.common.items.wands.ItemWandCasting;
 import thaumcraft.common.lib.world.ThaumcraftWorldGenerator;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.common.ConfigTX;
+import flaxbeard.thaumicexploration.integration.TTIntegration;
 
 public class TXBootsEventHandler {
 
@@ -35,18 +37,16 @@ public class TXBootsEventHandler {
 
     @SubscribeEvent
     public void livingTick(LivingUpdateEvent event) {
-        /*if (event.entity instanceof EntityPlayer) {
-        //		PlayerKnowledge rp = Thaumcraft.proxy.getPlayerKnowledge();
-        //		if (!rp.hasDiscoveredAspect(((EntityPlayer)event.entity).username, ThaumicExploration.fakeAspectNecro)) {
-        //			System.out.println(event.entity.worldObj.isRemote+" Discovering fake aspect");
-        //			//PacketHandler.sendAspectDiscoveryPacket(ThaumicExploration.fakeAspectNecro.getTag(), (EntityPlayerMP)event.entity);
-        //
-        //			rp.addDiscoveredAspect(((EntityPlayer)event.entity).username, ThaumicExploration.fakeAspectNecro);
-        //			if (rp.hasDiscoveredAspect(((EntityPlayer)event.entity).username, ThaumicExploration.fakeAspectNecro)) {
-        //				System.out.println(event.entity.worldObj.isRemote+" has discovered fake aspect");
-        //			}
-        //		}
-        	}*/
+        /*
+         * if (event.entity instanceof EntityPlayer) { // PlayerKnowledge rp = Thaumcraft.proxy.getPlayerKnowledge(); //
+         * if (!rp.hasDiscoveredAspect(((EntityPlayer)event.entity).username, ThaumicExploration.fakeAspectNecro)) { //
+         * System.out.println(event.entity.worldObj.isRemote+" Discovering fake aspect"); //
+         * //PacketHandler.sendAspectDiscoveryPacket(ThaumicExploration.fakeAspectNecro.getTag(),
+         * (EntityPlayerMP)event.entity); // // rp.addDiscoveredAspect(((EntityPlayer)event.entity).username,
+         * ThaumicExploration.fakeAspectNecro); // if (rp.hasDiscoveredAspect(((EntityPlayer)event.entity).username,
+         * ThaumicExploration.fakeAspectNecro)) { //
+         * System.out.println(event.entity.worldObj.isRemote+" has discovered fake aspect"); // } // } }
+         */
         if ((event.entity instanceof EntityPlayer)) {
             EntityPlayer player = (EntityPlayer) event.entity;
             // Utils.setWalkSpeed(player.capabilities, Utils.getWalkSpeed(genericPlayerCapabilities));
@@ -129,41 +129,43 @@ public class TXBootsEventHandler {
                                                 canAdd = true;
                                             }
                                         }
-                                        if (canAdd)
-                                            nodes.add(new ChunkCoordinates(
-                                                    ((int) player.posX) + xx,
-                                                    ((int) player.posY) + yy,
-                                                    ((int) player.posZ) + zz));
+                                        if (canAdd) nodes.add(
+                                                new ChunkCoordinates(
+                                                        ((int) player.posX) + xx,
+                                                        ((int) player.posY) + yy,
+                                                        ((int) player.posZ) + zz));
                                     }
                                 }
                             }
                         }
                         ChunkCoordinates randNode;
                         if (nodes.size() != 0) {
-                            if (!nodes.contains(new ChunkCoordinates(
-                                    player.getHeldItem().stackTagCompound.getInteger("drainX"),
-                                    player.getHeldItem().stackTagCompound.getInteger("drainY"),
-                                    player.getHeldItem().stackTagCompound.getInteger("drainZ")))) {
+                            if (!nodes.contains(
+                                    new ChunkCoordinates(
+                                            player.getHeldItem().stackTagCompound.getInteger("drainX"),
+                                            player.getHeldItem().stackTagCompound.getInteger("drainY"),
+                                            player.getHeldItem().stackTagCompound.getInteger("drainZ")))) {
                                 randNode = nodes.get(player.worldObj.rand.nextInt(nodes.size()));
                                 player.getHeldItem().stackTagCompound.setInteger("drainX", randNode.posX);
                                 player.getHeldItem().stackTagCompound.setInteger("drainY", randNode.posY);
                                 player.getHeldItem().stackTagCompound.setInteger("drainZ", randNode.posZ);
                             } else {
-                                randNode = new ChunkCoordinates(new ChunkCoordinates(
-                                        player.getHeldItem().stackTagCompound.getInteger("drainX"),
-                                        player.getHeldItem().stackTagCompound.getInteger("drainY"),
-                                        player.getHeldItem().stackTagCompound.getInteger("drainZ")));
+                                randNode = new ChunkCoordinates(
+                                        new ChunkCoordinates(
+                                                player.getHeldItem().stackTagCompound.getInteger("drainX"),
+                                                player.getHeldItem().stackTagCompound.getInteger("drainY"),
+                                                player.getHeldItem().stackTagCompound.getInteger("drainZ")));
                             }
-                            INode node =
-                                    (INode) player.worldObj.getTileEntity(randNode.posX, randNode.posY, randNode.posZ);
+                            INode node = (INode) player.worldObj
+                                    .getTileEntity(randNode.posX, randNode.posY, randNode.posZ);
                             AspectList possibleAspects = new AspectList();
                             for (Aspect aspect : emptyAspects.getAspects()) {
                                 if (node.getAspects().getAmount(aspect) > 1) {
                                     possibleAspects.add(aspect, 1);
                                 }
                             }
-                            Aspect takeAspect = possibleAspects
-                                    .getAspects()[player.worldObj.rand.nextInt(possibleAspects.getAspects().length)];
+                            Aspect takeAspect = possibleAspects.getAspects()[player.worldObj.rand
+                                    .nextInt(possibleAspects.getAspects().length)];
                             node.takeFromContainer(takeAspect, 1);
                             player.worldObj.markBlockForUpdate(randNode.posX, randNode.posY, randNode.posZ);
                             wand.addVis(player.getHeldItem(), takeAspect, 1, true);
@@ -194,8 +196,8 @@ public class TXBootsEventHandler {
             }
             if (!wasTainted && isTainted) {
                 player.worldObj.playSoundEffect(player.posX, player.posY, player.posZ, "thaumcraft:zap", 1.0F, 1.0F);
-                //        	player.addPotionEffect(new PotionEffect(Potion.blindness.id,60));
-                //        	player.addPotionEffect(new PotionEffect(Potion.confusion.id,160));
+                // player.addPotionEffect(new PotionEffect(Potion.blindness.id,60));
+                // player.addPotionEffect(new PotionEffect(Potion.confusion.id,160));
             }
             player.getEntityData().setBoolean("tainted", isTainted);
 
@@ -214,10 +216,7 @@ public class TXBootsEventHandler {
                             if (player.inventory.getStackInSlot(i) != null
                                     && player.inventory.getStackInSlot(i).getItem() == ConfigItems.itemResource
                                     && (player.inventory.getStackInSlot(i).getItemDamage() == 11
-                                            || player.inventory
-                                                            .getStackInSlot(i)
-                                                            .getItemDamage()
-                                                    == 12)) {
+                                            || player.inventory.getStackInSlot(i).getItemDamage() == 12)) {
                                 player.inventory.decrStackSize(i, 1);
                                 taintGP = 0;
                                 player.getEntityData().setInteger("taintGracePeriod", 0);
@@ -225,9 +224,8 @@ public class TXBootsEventHandler {
                             }
                         }
 
-                        if (taintGP > 100)
-                            player.addPotionEffect(
-                                    new PotionEffect(ThaumicExploration.potionTaintWithdrawl.id, 100, 1));
+                        if (taintGP > 100) player
+                                .addPotionEffect(new PotionEffect(ThaumicExploration.potionTaintWithdrawl.id, 100, 1));
                     }
                 }
 
@@ -260,69 +258,33 @@ public class TXBootsEventHandler {
                 }
             }
             /*
-                //TODO
-                	for (int i = 0; i<player.inventory.getSizeInventory(); i++) {
-
-            			if (player.inventory.getStackInSlot(i) != null && player.inventory.getStackInSlot(i).getItem() == ThaumicExploration.charmTaint) {
-                		player.removePotionEffect(PotionFluxTaint.instance.id);
-            break;
-            			}
-                	}
-                */
+             * //TODO for (int i = 0; i<player.inventory.getSizeInventory(); i++) { if
+             * (player.inventory.getStackInSlot(i) != null && player.inventory.getStackInSlot(i).getItem() ==
+             * ThaumicExploration.charmTaint) { player.removePotionEffect(PotionFluxTaint.instance.id); break; } }
+             */
         }
 
-        if ((event.entity.worldObj.isRemote)
-                && (this.prevStep.containsKey(Integer.valueOf(event.entity.getEntityId())))
+        if ((event.entity.worldObj.isRemote) && (this.prevStep.containsKey(Integer.valueOf(event.entity.getEntityId())))
                 && ((((EntityPlayer) event.entity).inventory.armorItemInSlot(0) == null)
-                        || (((EntityPlayer) event.entity)
-                                                .inventory
-                                                .armorItemInSlot(0)
-                                                .getItem()
-                                        != ThaumicExploration.bootsMeteor
-                                && ((EntityPlayer) event.entity)
-                                                .inventory
-                                                .armorItemInSlot(0)
-                                                .getItem()
+                        || (((EntityPlayer) event.entity).inventory.armorItemInSlot(0).getItem()
+                                != ThaumicExploration.bootsMeteor
+                                && ((EntityPlayer) event.entity).inventory.armorItemInSlot(0).getItem()
                                         != ThaumicExploration.bootsComet))) {
-            event.entity.stepHeight =
-                    ((Float) this.prevStep.get(Integer.valueOf(event.entity.getEntityId()))).floatValue();
+            event.entity.stepHeight = ((Float) this.prevStep.get(Integer.valueOf(event.entity.getEntityId())))
+                    .floatValue();
             this.prevStep.remove(Integer.valueOf(event.entity.getEntityId()));
         }
     }
     /*
-     @SubscribeEvent
-    public void onEntityUpdate(LivingUpdateEvent event){
-      if (event.entity instanceof EntityPlayer) {
-        	EntityPlayer player = (EntityPlayer)event.entity;
-
-        	PotionEffect effect = player.getActivePotionEffect(Config.potionTaintPoisonID);
-    		if (!(effect == null)) {
-
-    			PotionEffect neweffect = new PotionEffect(Potion.nightVision.id, Integer.MAX_VALUE, -42, true);
-    			player.addPotionEffect(neweffect);
-
-    			System.out.println("some flux here");
-    		}
-    		else {
-    			//System.out.println("no flux");
-    		}
-
-
-    		/*if(player.isPotionActive(PotionFluxTaint.instance.id)){
-
-
-    			for (int i = 0; i<player.inventory.getSizeInventory(); i++) {
-        			if (player.inventory.getStackInSlot(i) != null &&
-       					player.inventory.getStackInSlot(i).getItem() == ThaumicExploration.charmTaint) {
-    		        		player.removePotionEffect(PotionFluxTaint.instance.id);
-    						//break;
-        			}
-            	}
-
-
-    		}
-        }
-    }*/
+     * @SubscribeEvent public void onEntityUpdate(LivingUpdateEvent event){ if (event.entity instanceof EntityPlayer) {
+     * EntityPlayer player = (EntityPlayer)event.entity; PotionEffect effect =
+     * player.getActivePotionEffect(Config.potionTaintPoisonID); if (!(effect == null)) { PotionEffect neweffect = new
+     * PotionEffect(Potion.nightVision.id, Integer.MAX_VALUE, -42, true); player.addPotionEffect(neweffect);
+     * System.out.println("some flux here"); } else { //System.out.println("no flux"); }
+     * /*if(player.isPotionActive(PotionFluxTaint.instance.id)){ for (int i = 0; i<player.inventory.getSizeInventory();
+     * i++) { if (player.inventory.getStackInSlot(i) != null && player.inventory.getStackInSlot(i).getItem() ==
+     * ThaumicExploration.charmTaint) { player.removePotionEffect(PotionFluxTaint.instance.id); //break; } } } } }
+     */
 
     @SubscribeEvent
     public void joinWorld(EntityJoinWorldEvent event) {
@@ -366,8 +328,8 @@ public class TXBootsEventHandler {
                 && (((EntityPlayer) event.entity).inventory.armorItemInSlot(0) != null)
                 && (((EntityPlayer) event.entity).inventory.armorItemInSlot(0).getItem()
                         == ThaumicExploration.bootsComet)) {
-            event.entityLiving.motionY += 0.2750000059604645D;
-        }
+                            event.entityLiving.motionY += 0.2750000059604645D;
+                        }
     }
 
     // TODO boot effect
@@ -471,77 +433,79 @@ public class TXBootsEventHandler {
         else if ((player.inventory.armorItemInSlot(0) != null)
                 && (player.inventory.armorItemInSlot(0).getItem() == ThaumicExploration.bootsComet)) {
 
-            Vec3 vector = player.getLook(1.0F);
-            ItemStack item = player.inventory.armorItemInSlot(0);
-            if (!item.hasTagCompound()) {
-                NBTTagCompound par1NBTTagCompound = new NBTTagCompound();
-                item.setTagCompound(par1NBTTagCompound);
-                item.stackTagCompound.setInteger("runTicks", 0);
-            }
+                    Vec3 vector = player.getLook(1.0F);
+                    ItemStack item = player.inventory.armorItemInSlot(0);
+                    if (!item.hasTagCompound()) {
+                        NBTTagCompound par1NBTTagCompound = new NBTTagCompound();
+                        item.setTagCompound(par1NBTTagCompound);
+                        item.stackTagCompound.setInteger("runTicks", 0);
+                    }
 
-            // anti-griefing config
-            if (ConfigTX.allowBootsIce) {
-                for (int x = -5; x < 6; x++) {
-                    for (int z = -5; z < 6; z++) {
-                        if ((player.worldObj.getBlock((int) (player.posX + x), (int) (player.posY - 1), (int)
-                                                        (player.posZ + z))
-                                                == Blocks.water
+                    // anti-griefing config
+                    if (ConfigTX.allowBootsIce) {
+                        for (int x = -5; x < 6; x++) {
+                            for (int z = -5; z < 6; z++) {
+                                if ((player.worldObj.getBlock(
+                                        (int) (player.posX + x),
+                                        (int) (player.posY - 1),
+                                        (int) (player.posZ + z)) == Blocks.water
                                         || player.worldObj.getBlock(
-                                                        (int) (player.posX + x), (int) (player.posY - 1), (int)
-                                                                (player.posZ + z))
-                                                == Blocks.water)
-                                && player.worldObj
-                                                .getBlock((int) (player.posX + x), (int) player.posY - 1, (int)
-                                                        (player.posZ + z))
-                                                .getMaterial()
-                                        == Material.water
-                                && player.worldObj.getBlockMetadata(
-                                                (int) (player.posX + x), (int) player.posY - 1, (int) (player.posZ + z))
-                                        == 0
-                                && !player.isInWater()
-                                && (Math.abs(x) + Math.abs(z) < 8)) {
-                            player.worldObj.setBlock(
-                                    (int) (player.posX + x),
-                                    (int) player.posY - 1,
-                                    (int) (player.posZ + z),
-                                    ThaumicExploration.meltyIce);
-                            player.worldObj.spawnParticle(
-                                    "snowballpoof",
-                                    (int) (player.posX + x),
-                                    (int) player.posY,
-                                    (int) (player.posZ + z),
-                                    0.0D,
-                                    0.025D,
-                                    0.0D);
+                                                (int) (player.posX + x),
+                                                (int) (player.posY - 1),
+                                                (int) (player.posZ + z)) == Blocks.water)
+                                        && player.worldObj.getBlock(
+                                                (int) (player.posX + x),
+                                                (int) player.posY - 1,
+                                                (int) (player.posZ + z)).getMaterial() == Material.water
+                                        && player.worldObj.getBlockMetadata(
+                                                (int) (player.posX + x),
+                                                (int) player.posY - 1,
+                                                (int) (player.posZ + z)) == 0
+                                        && !player.isInWater()
+                                        && (Math.abs(x) + Math.abs(z) < 8)) {
+                                    player.worldObj.setBlock(
+                                            (int) (player.posX + x),
+                                            (int) player.posY - 1,
+                                            (int) (player.posZ + z),
+                                            ThaumicExploration.meltyIce);
+                                    player.worldObj.spawnParticle(
+                                            "snowballpoof",
+                                            (int) (player.posX + x),
+                                            (int) player.posY,
+                                            (int) (player.posZ + z),
+                                            0.0D,
+                                            0.025D,
+                                            0.0D);
+                                }
+                            }
                         }
                     }
+
+                    int ticks = item.stackTagCompound.getInteger("runTicks");
+
+                    double motion = Math.abs(player.motionX) + Math.abs(player.motionZ) + Math.abs(player.motionY);
+                    if (motion > 0.1F || !player.onGround || player.isOnLadder()) {
+                        if (ticks < 100) ticks++;
+                    } else {
+                        ticks = 0;
+                    }
+
+                    if (!player.isWet() && motion > 0.1F) {
+                        player.worldObj.spawnParticle(
+                                "fireworksSpark",
+                                (double) (player.posX + Math.random() - 0.5F),
+                                (double) (player.boundingBox.minY + 0.25F + ((Math.random() - 0.5) * 0.25F)),
+                                (double) (player.posZ + Math.random() - 0.5F),
+                                0.0D,
+                                0.025D,
+                                0.0D);
+                        // player.worldObj.spawnParticle("snowballpoof", (double)(player.posX + Math.random()-0.5F),
+                        // (double)(player.boundingBox.minY + 0.25F + ((Math.random()-0.5)*0.25F)), (double)(player.posZ
+                        // +
+                        // Math.random()-0.5F), 0.0D, 0.025D, 0.0D);
+                    }
+
+                    item.stackTagCompound.setInteger("runTicks", ticks);
                 }
-            }
-
-            int ticks = item.stackTagCompound.getInteger("runTicks");
-
-            double motion = Math.abs(player.motionX) + Math.abs(player.motionZ) + Math.abs(player.motionY);
-            if (motion > 0.1F || !player.onGround || player.isOnLadder()) {
-                if (ticks < 100) ticks++;
-            } else {
-                ticks = 0;
-            }
-
-            if (!player.isWet() && motion > 0.1F) {
-                player.worldObj.spawnParticle(
-                        "fireworksSpark",
-                        (double) (player.posX + Math.random() - 0.5F),
-                        (double) (player.boundingBox.minY + 0.25F + ((Math.random() - 0.5) * 0.25F)),
-                        (double) (player.posZ + Math.random() - 0.5F),
-                        0.0D,
-                        0.025D,
-                        0.0D);
-                // player.worldObj.spawnParticle("snowballpoof", (double)(player.posX + Math.random()-0.5F),
-                // (double)(player.boundingBox.minY + 0.25F + ((Math.random()-0.5)*0.25F)), (double)(player.posZ +
-                // Math.random()-0.5F), 0.0D, 0.025D, 0.0D);
-            }
-
-            item.stackTagCompound.setInteger("runTicks", ticks);
-        }
     }
 }

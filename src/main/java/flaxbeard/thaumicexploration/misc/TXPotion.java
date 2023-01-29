@@ -1,12 +1,14 @@
 package flaxbeard.thaumicexploration.misc;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 public class TXPotion extends Potion {
+
     public TXPotion(int par1, boolean par2, int par3) {
         super(par1, par2, par3);
     }

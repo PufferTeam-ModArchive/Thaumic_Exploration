@@ -1,14 +1,16 @@
 package flaxbeard.thaumicexploration.item;
 
-import baubles.api.BaubleType;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+
 import thaumcraft.api.IVisDiscountGear;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
+import baubles.api.BaubleType;
 
 public class ItemBaubleDiscounter extends ItemBauble implements IVisDiscountGear {
 
@@ -43,13 +45,21 @@ public class ItemBaubleDiscounter extends ItemBauble implements IVisDiscountGear
 
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean par4) {
         if (getVisDiscount(stack, player, null) > 0) {
-            list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("tc.visdiscount") + ": "
-                    + getVisDiscount(stack, player, null) + "%");
+            list.add(
+                    EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("tc.visdiscount")
+                            + ": "
+                            + getVisDiscount(stack, player, null)
+                            + "%");
         } else {
             for (Aspect pAspect : Aspect.getPrimalAspects()) {
                 if (getVisDiscount(stack, player, pAspect) > 0) {
-                    list.add(EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("tc.visdiscount") + " ("
-                            + pAspect.getName() + "): " + getVisDiscount(stack, player, pAspect) + "%");
+                    list.add(
+                            EnumChatFormatting.DARK_PURPLE + StatCollector.translateToLocal("tc.visdiscount")
+                                    + " ("
+                                    + pAspect.getName()
+                                    + "): "
+                                    + getVisDiscount(stack, player, pAspect)
+                                    + "%");
                 }
             }
         }

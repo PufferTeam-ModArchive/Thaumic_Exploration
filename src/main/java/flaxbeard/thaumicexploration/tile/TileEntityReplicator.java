@@ -1,8 +1,8 @@
 package flaxbeard.thaumicexploration.tile;
 
-import flaxbeard.thaumicexploration.ThaumicExploration;
 import java.util.ArrayList;
 import java.util.Iterator;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +16,7 @@ import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.world.World;
+
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.aspects.IAspectContainer;
@@ -23,10 +24,11 @@ import thaumcraft.api.aspects.IAspectSource;
 import thaumcraft.api.wands.IWandable;
 import thaumcraft.common.config.Config;
 import thaumcraft.common.lib.crafting.ThaumcraftCraftingManager;
+import flaxbeard.thaumicexploration.ThaumicExploration;
 
 public class TileEntityReplicator extends TileEntity implements ISidedInventory, IWandable, IAspectContainer {
 
-    private static final int[] slots = {0};
+    private static final int[] slots = { 0 };
     public boolean crafting;
     private ItemStack[] oldInventory = new ItemStack[1];
     private ItemStack[] inventory = new ItemStack[1];
@@ -146,36 +148,36 @@ public class TileEntityReplicator extends TileEntity implements ISidedInventory,
                                             as.takeFromContainer(aspect, 1);
                                             this.recipeEssentia.reduce(aspect, 1);
 
-                                            //	                        ByteArrayOutputStream bos = new
+                                            // ByteArrayOutputStream bos = new
                                             // ByteArrayOutputStream(8);
-                                            //	            	        DataOutputStream outputStream = new
+                                            // DataOutputStream outputStream = new
                                             // DataOutputStream(bos);
                                             //
-                                            //	            	        try
-                                            //	            	        {
-                                            //	            	            outputStream.writeByte(6);
+                                            // try
+                                            // {
+                                            // outputStream.writeByte(6);
                                             //
                                             // outputStream.writeInt(this.worldObj.provider.dimensionId);
-                                            //	            	            outputStream.writeInt(this.xCoord);
-                                            //	            	            outputStream.writeInt(this.yCoord);
-                                            //	            	            outputStream.writeInt(this.zCoord);
-                                            //	            	            outputStream.writeInt(cc.posX);
-                                            //	            	            outputStream.writeInt(cc.posY);
-                                            //	            	            outputStream.writeInt(cc.posZ);
-                                            //	            	            outputStream.writeInt(aspect.getColor());
+                                            // outputStream.writeInt(this.xCoord);
+                                            // outputStream.writeInt(this.yCoord);
+                                            // outputStream.writeInt(this.zCoord);
+                                            // outputStream.writeInt(cc.posX);
+                                            // outputStream.writeInt(cc.posY);
+                                            // outputStream.writeInt(cc.posZ);
+                                            // outputStream.writeInt(aspect.getColor());
                                             //
-                                            //	            	        }
-                                            //	            	        catch (Exception ex)
-                                            //	            	        {
-                                            //	            	            ex.printStackTrace();
-                                            //	            	        }
+                                            // }
+                                            // catch (Exception ex)
+                                            // {
+                                            // ex.printStackTrace();
+                                            // }
                                             //
-                                            //	            	        Packet250CustomPayload packet = new
+                                            // Packet250CustomPayload packet = new
                                             // Packet250CustomPayload();
-                                            //	            	        packet.channel = "tExploration";
-                                            //	            	        packet.data = bos.toByteArray();
-                                            //	            	        packet.length = bos.size();
-                                            //	            	        PacketDispatcher.sendPacketToAllPlayers(packet);
+                                            // packet.channel = "tExploration";
+                                            // packet.data = bos.toByteArray();
+                                            // packet.length = bos.size();
+                                            // PacketDispatcher.sendPacketToAllPlayers(packet);
 
                                             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
                                             return;
@@ -191,7 +193,12 @@ public class TileEntityReplicator extends TileEntity implements ISidedInventory,
                         if (this.essentiaTicks > 49) {
                             if (260 - this.ticksLeft % 40 == 0) {
                                 this.worldObj.playSoundEffect(
-                                        this.xCoord, this.yCoord, this.zCoord, "thaumcraft:rumble", 0.5F, 1.0F);
+                                        this.xCoord,
+                                        this.yCoord,
+                                        this.zCoord,
+                                        "thaumcraft:rumble",
+                                        0.5F,
+                                        1.0F);
                             }
                             this.ticksLeft--;
                         }
@@ -210,12 +217,8 @@ public class TileEntityReplicator extends TileEntity implements ISidedInventory,
 
     public boolean validLocation() {
         if (this.worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord).getMaterial() != Config.airyMaterial
-                && this.worldObj
-                                .getBlock(this.xCoord, this.yCoord + 1, this.zCoord)
-                                .getMaterial()
-                        != Material.air
-                && !this.worldObj
-                        .getBlock(this.xCoord, this.yCoord + 1, this.zCoord)
+                && this.worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord).getMaterial() != Material.air
+                && !this.worldObj.getBlock(this.xCoord, this.yCoord + 1, this.zCoord)
                         .isReplaceable(this.worldObj, this.xCoord, this.yCoord + 1, this.zCoord)) {
             return false;
         }
@@ -239,9 +242,9 @@ public class TileEntityReplicator extends TileEntity implements ISidedInventory,
             if (this.inventory[i] == null) {
                 this.inventory[i] = template;
             }
-            //	      	if (this.inventory[i ].stackSize == 0) {
-            //	    	  	this.inventory[i] = null;
-            //	      	}
+            // if (this.inventory[i ].stackSize == 0) {
+            // this.inventory[i] = null;
+            // }
             return itemstack;
         }
         return null;
@@ -459,8 +462,8 @@ public class TileEntityReplicator extends TileEntity implements ISidedInventory,
     }
 
     @Override
-    public int onWandRightClick(
-            World world, ItemStack wandstack, EntityPlayer player, int x, int y, int z, int side, int md) {
+    public int onWandRightClick(World world, ItemStack wandstack, EntityPlayer player, int x, int y, int z, int side,
+            int md) {
         if (!this.crafting) {
             this.startCrafting();
             return 0;

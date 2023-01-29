@@ -5,6 +5,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+
 import thaumcraft.api.potions.PotionFluxTaint;
 
 public class ItemTaintCharm extends Item {
@@ -24,24 +25,13 @@ public class ItemTaintCharm extends Item {
 
                     player.removePotionEffect(PotionFluxTaint.instance.id);
                     /*
-                    Collection<PotionEffect> potions = player.getActivePotionEffects();
-
-                                   for (PotionEffect potion : potions) {
-                                       int id = potion.getPotionID();
-                                       //boolean badEffect;
-                                       //badEffect = ReflectionHelper.getPrivateValue(Potion.class, Potion.potionTypes[id], new String[]{"isBadEffect", "field_76418_K"});
-                                       if (Potion.potionTypes[id] instanceof PotionFluxTaint) {
-                                           //badEffect = true;
-                                           player.removePotionEffect(id);
-                                           removed = true;
-                                       }
-
-                                   }
-
-                    if(removed) {
-                    	par2World.playSoundAtEntity(player, "thaumcraft:wand", 0.3F, 0.1F);
-                    }
-                    */
+                     * Collection<PotionEffect> potions = player.getActivePotionEffects(); for (PotionEffect potion :
+                     * potions) { int id = potion.getPotionID(); //boolean badEffect; //badEffect =
+                     * ReflectionHelper.getPrivateValue(Potion.class, Potion.potionTypes[id], new
+                     * String[]{"isBadEffect", "field_76418_K"}); if (Potion.potionTypes[id] instanceof PotionFluxTaint)
+                     * { //badEffect = true; player.removePotionEffect(id); removed = true; } } if(removed) {
+                     * par2World.playSoundAtEntity(player, "thaumcraft:wand", 0.3F, 0.1F); }
+                     */
                 }
             }
         }

@@ -1,9 +1,7 @@
 package flaxbeard.thaumicexploration.tile;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.block.BlockThinkTank;
 import java.util.Random;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,13 +16,18 @@ import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
+
 import thaumcraft.common.config.Config;
 import thaumcraft.common.config.ConfigItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.block.BlockThinkTank;
 
 public class TileEntityThinkTank extends TileEntity implements ISidedInventory {
-    private static final int[] slots_top = new int[] {0};
-    private static final int[] slots_bottom = new int[] {1};
-    private static final int[] slots_sides = new int[] {1};
+
+    private static final int[] slots_top = new int[] { 0 };
+    private static final int[] slots_bottom = new int[] { 1 };
+    private static final int[] slots_sides = new int[] { 1 };
 
     long lastsigh = System.currentTimeMillis() + 1500L;
     protected static Random rand = new Random();
@@ -307,7 +310,11 @@ public class TileEntityThinkTank extends TileEntity implements ISidedInventory {
             if (flag != this.furnaceBurnTime > 0) {
                 flag1 = true;
                 BlockThinkTank.updateFurnaceBlockState(
-                        this.furnaceBurnTime > 0, this.worldObj, this.xCoord, this.yCoord, this.zCoord);
+                        this.furnaceBurnTime > 0,
+                        this.worldObj,
+                        this.xCoord,
+                        this.yCoord,
+                        this.zCoord);
             }
         }
         if (this.worldObj.isRemote) {
@@ -315,8 +322,8 @@ public class TileEntityThinkTank extends TileEntity implements ISidedInventory {
             this.canSpaz = true;
             Entity entity = null;
             if (entity == null) {
-                entity = this.worldObj.getClosestPlayer(
-                        this.xCoord + 0.5F, this.yCoord + 0.5F, this.zCoord + 0.5F, 6.0D);
+                entity = this.worldObj
+                        .getClosestPlayer(this.xCoord + 0.5F, this.yCoord + 0.5F, this.zCoord + 0.5F, 6.0D);
                 if ((entity != null) && (this.lastsigh < System.currentTimeMillis())) {
                     this.worldObj.playSound(
                             this.xCoord + 0.5D,
@@ -372,19 +379,13 @@ public class TileEntityThinkTank extends TileEntity implements ISidedInventory {
         for (int x = -2; x < 3; x++) {
             for (int z = -2; z < 3; z++) {
                 for (int y = -1; y < 2; y++) {
-                    if (this.worldObj
-                                            .getBlock(this.xCoord + x, this.yCoord + y, this.zCoord + z)
-                                            .getMaterial()
-                                    != Config.airyMaterial
-                            && this.worldObj
-                                            .getBlock(this.xCoord + x, this.yCoord + y, this.zCoord + z)
-                                            .getMaterial()
+                    if (this.worldObj.getBlock(this.xCoord + x, this.yCoord + y, this.zCoord + z).getMaterial()
+                            != Config.airyMaterial
+                            && this.worldObj.getBlock(this.xCoord + x, this.yCoord + y, this.zCoord + z).getMaterial()
                                     != Material.air
-                            && !this.worldObj
-                                    .getBlock(this.xCoord + x, this.yCoord + y, this.zCoord + z)
+                            && !this.worldObj.getBlock(this.xCoord + x, this.yCoord + y, this.zCoord + z)
                                     .isReplaceable(this.worldObj, this.xCoord + x, this.yCoord + y, this.zCoord + z)) {
-                        if (!(this.xCoord + x == this.xCoord
-                                && this.zCoord + z == this.zCoord
+                        if (!(this.xCoord + x == this.xCoord && this.zCoord + z == this.zCoord
                                 && (this.yCoord + y == this.yCoord || this.yCoord + y == this.yCoord - 1))) {
                             if (Math.abs(x) > 1 || Math.abs(z) > 1) {
                                 muchSpace = false;
@@ -459,11 +460,11 @@ public class TileEntityThinkTank extends TileEntity implements ISidedInventory {
      * Do not make give this method the name canInteractWith because it clashes with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this
-                ? false
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false
                 : par1EntityPlayer.getDistanceSq(
-                                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D)
-                        <= 64.0D;
+                        (double) this.xCoord + 0.5D,
+                        (double) this.yCoord + 0.5D,
+                        (double) this.zCoord + 0.5D) <= 64.0D;
     }
 
     public void openChest() {}

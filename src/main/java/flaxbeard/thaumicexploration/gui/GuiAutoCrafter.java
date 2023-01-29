@@ -1,17 +1,20 @@
 package flaxbeard.thaumicexploration.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.tile.TileEntityAutoCrafter;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.tile.TileEntityAutoCrafter;
 
 @SideOnly(Side.CLIENT)
 public class GuiAutoCrafter extends GuiContainer {
-    private static final ResourceLocation furnaceGuiTextures =
-            new ResourceLocation("thaumicexploration:textures/gui/AutoCrafter.png");
+
+    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation(
+            "thaumicexploration:textures/gui/AutoCrafter.png");
     private TileEntityAutoCrafter furnaceInventory;
 
     public GuiAutoCrafter(InventoryPlayer par1InventoryPlayer, TileEntityAutoCrafter par2TileEntityAutoCrafter) {

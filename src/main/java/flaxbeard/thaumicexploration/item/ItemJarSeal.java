@@ -1,12 +1,7 @@
 package flaxbeard.thaumicexploration.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.data.BoundJarNetworkManager;
-import flaxbeard.thaumicexploration.misc.NBTHelper;
-import flaxbeard.thaumicexploration.tile.TileEntityBoundJar;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,11 +11,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
+
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.codechicken.lib.colour.Colour;
 import thaumcraft.codechicken.lib.colour.ColourRGBA;
 import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.tiles.TileJarFillable;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.data.BoundJarNetworkManager;
+import flaxbeard.thaumicexploration.misc.NBTHelper;
+import flaxbeard.thaumicexploration.tile.TileEntityBoundJar;
 
 /**
  * Created by Katrina on 16/06/2015.
@@ -42,17 +44,8 @@ public class ItemJarSeal extends Item {
     }
 
     @Override
-    public boolean onItemUse(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float dx,
-            float dy,
-            float dz) {
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float dx,
+            float dy, float dz) {
         if (world.getBlock(x, y, z) == ConfigBlocks.blockJar) {
             TileJarFillable entity = (TileJarFillable) world.getTileEntity(x, y, z);
             if (entity.amount == 0 && entity.aspectFilter == null) {

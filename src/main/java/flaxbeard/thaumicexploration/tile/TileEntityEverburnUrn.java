@@ -4,6 +4,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.*;
+
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.visnet.VisNetHandler;
 
@@ -94,7 +95,7 @@ public class TileEntityEverburnUrn extends TileEntity implements IFluidTank, IFl
 
     @Override
     public FluidTankInfo[] getTankInfo(ForgeDirection from) {
-        return new FluidTankInfo[] {this.getInfo()};
+        return new FluidTankInfo[] { this.getInfo() };
     }
 
     @Override
@@ -103,8 +104,8 @@ public class TileEntityEverburnUrn extends TileEntity implements IFluidTank, IFl
         this.ticks++;
         if (this.ticks == 10) {
             if (this.ignisVis < 16) {
-                ignisVis +=
-                        VisNetHandler.drainVis(this.worldObj, this.xCoord, this.yCoord, this.zCoord, Aspect.FIRE, 1);
+                ignisVis += VisNetHandler
+                        .drainVis(this.worldObj, this.xCoord, this.yCoord, this.zCoord, Aspect.FIRE, 1);
                 worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             }
             ticks = 0;

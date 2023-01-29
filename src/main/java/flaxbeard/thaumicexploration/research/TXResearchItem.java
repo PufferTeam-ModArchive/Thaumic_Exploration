@@ -1,15 +1,16 @@
 package flaxbeard.thaumicexploration.research;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.common.ConfigTX;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.StatCollector;
+
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.research.ResearchItem;
 import thaumcraft.api.research.ResearchPage;
 import thaumcraft.api.research.ResearchPage.PageType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.common.ConfigTX;
 
 public class TXResearchItem extends ResearchItem {
 
@@ -21,8 +22,8 @@ public class TXResearchItem extends ResearchItem {
         super(par1, par2, tags, par3, par4, par5, icon);
     }
 
-    public TXResearchItem(
-            String par1, String par2, AspectList tags, int par3, int par4, int par5, ResourceLocation icon) {
+    public TXResearchItem(String par1, String par2, AspectList tags, int par3, int par4, int par5,
+            ResourceLocation icon) {
         super(par1, par2, tags, par3, par4, par5, icon);
     }
 
@@ -53,7 +54,7 @@ public class TXResearchItem extends ResearchItem {
             }
 
             if (page.type == PageType.INFUSION_CRAFTING) {
-                if (parentsHidden == null || parentsHidden.length == 0) parentsHidden = new String[] {"INFUSION"};
+                if (parentsHidden == null || parentsHidden.length == 0) parentsHidden = new String[] { "INFUSION" };
                 else {
                     String[] newParents = new String[parentsHidden.length + 1];
                     newParents[0] = "INFUSION";

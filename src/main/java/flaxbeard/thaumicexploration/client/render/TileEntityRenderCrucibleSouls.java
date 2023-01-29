@@ -1,15 +1,18 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import flaxbeard.thaumicexploration.tile.TileEntityCrucibleSouls;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.init.Blocks;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
+
 import org.lwjgl.opengl.GL11;
+
 import thaumcraft.client.lib.UtilsFX;
 import thaumcraft.common.config.ConfigBlocks;
+import flaxbeard.thaumicexploration.tile.TileEntityCrucibleSouls;
 
 public class TileEntityRenderCrucibleSouls extends TileEntitySpecialRenderer {
+
     public void renderEntityAt(TileEntityCrucibleSouls cr, double x, double y, double z, float fq) {
         if (cr.getFluidHeight() > 0) {
             renderFluid(cr, x, y, z);
@@ -34,8 +37,8 @@ public class TileEntityRenderCrucibleSouls extends TileEntitySpecialRenderer {
                     1.0F - recolor / 3.0F,
                     1.0F - recolor,
                     1.0F - recolor / 2.0F,
-                    ConfigBlocks.blockMetalDevice.getMixedBrightnessForBlock(
-                            cr.getWorldObj(), cr.xCoord, cr.yCoord, cr.zCoord),
+                    ConfigBlocks.blockMetalDevice
+                            .getMixedBrightnessForBlock(cr.getWorldObj(), cr.xCoord, cr.yCoord, cr.zCoord),
                     771,
                     1.0F);
         }

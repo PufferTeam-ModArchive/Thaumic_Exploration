@@ -1,6 +1,5 @@
 package flaxbeard.thaumicexploration.item;
 
-import flaxbeard.thaumicexploration.ThaumicExploration;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,11 +9,13 @@ import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+
 import thaumcraft.api.IRepairable;
 import thaumcraft.api.IRunicArmor;
 import thaumcraft.common.Thaumcraft;
 import thaumcraft.common.config.Config;
 import thaumcraft.common.items.armor.Hover;
+import flaxbeard.thaumicexploration.ThaumicExploration;
 
 public class ItemTXArmorSpecial extends ItemArmor implements IRepairable, IRunicArmor {
 
@@ -35,8 +36,7 @@ public class ItemTXArmorSpecial extends ItemArmor implements IRepairable, IRunic
     }
 
     public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack) {
-        return par2ItemStack.isItemEqual(new ItemStack(Items.leather))
-                ? true
+        return par2ItemStack.isItemEqual(new ItemStack(Items.leather)) ? true
                 : super.getIsRepairable(par1ItemStack, par2ItemStack);
     }
 
@@ -48,14 +48,14 @@ public class ItemTXArmorSpecial extends ItemArmor implements IRepairable, IRunic
             }
         }
         if ((!player.capabilities.isFlying) && (player.moveForward > 0.0F)) {
-            int haste = EnchantmentHelper.getEnchantmentLevel(
-                    Config.enchHaste.effectId, player.inventory.armorItemInSlot(0));
+            int haste = EnchantmentHelper
+                    .getEnchantmentLevel(Config.enchHaste.effectId, player.inventory.armorItemInSlot(0));
             if (player.inventory.armorItemInSlot(0).getItem() == ThaumicExploration.bootsMeteor) {
                 if (player.worldObj.isRemote) {
-                    if (!Thaumcraft.instance.entityEventHandler.prevStep.containsKey(
-                            Integer.valueOf(player.getEntityId()))) {
-                        Thaumcraft.instance.entityEventHandler.prevStep.put(
-                                Integer.valueOf(player.getEntityId()), Float.valueOf(player.stepHeight));
+                    if (!Thaumcraft.instance.entityEventHandler.prevStep
+                            .containsKey(Integer.valueOf(player.getEntityId()))) {
+                        Thaumcraft.instance.entityEventHandler.prevStep
+                                .put(Integer.valueOf(player.getEntityId()), Float.valueOf(player.stepHeight));
                     }
                     player.stepHeight = 1.0F;
                 }
@@ -75,10 +75,10 @@ public class ItemTXArmorSpecial extends ItemArmor implements IRepairable, IRunic
                 }
             } else if (player.inventory.armorItemInSlot(0).getItem() == ThaumicExploration.bootsComet) {
                 if (player.worldObj.isRemote) {
-                    if (!Thaumcraft.instance.entityEventHandler.prevStep.containsKey(
-                            Integer.valueOf(player.getEntityId()))) {
-                        Thaumcraft.instance.entityEventHandler.prevStep.put(
-                                Integer.valueOf(player.getEntityId()), Float.valueOf(player.stepHeight));
+                    if (!Thaumcraft.instance.entityEventHandler.prevStep
+                            .containsKey(Integer.valueOf(player.getEntityId()))) {
+                        Thaumcraft.instance.entityEventHandler.prevStep
+                                .put(Integer.valueOf(player.getEntityId()), Float.valueOf(player.stepHeight));
                     }
                     player.stepHeight = 1.0F;
                 }

@@ -1,17 +1,19 @@
 package flaxbeard.thaumicexploration.wand;
 
-import flaxbeard.thaumicexploration.ThaumicExploration;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.AxisAlignedBB;
+
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.api.wands.IWandRodOnUpdate;
 import thaumcraft.common.entities.EntityAspectOrb;
 import thaumcraft.common.items.wands.ItemWandCasting;
 import thaumcraft.common.lib.utils.InventoryUtils;
+import flaxbeard.thaumicexploration.ThaumicExploration;
 
 public class WandRodNecromancerOnUpdate implements IWandRodOnUpdate {
 
@@ -51,8 +53,8 @@ public class WandRodNecromancerOnUpdate implements IWandRodOnUpdate {
                 par1EntityPlayer.posX + 3,
                 par1EntityPlayer.posY + 3,
                 par1EntityPlayer.posZ + 3);
-        List<EntityAspectOrb> orbs =
-                par1EntityPlayer.worldObj.getEntitiesWithinAABB(EntityAspectOrb.class, boundingBox);
+        List<EntityAspectOrb> orbs = par1EntityPlayer.worldObj
+                .getEntitiesWithinAABB(EntityAspectOrb.class, boundingBox);
 
         thisWand.storeAllVis(itemstack, lastAspects);
         NBTTagCompound tag = new NBTTagCompound();
@@ -64,10 +66,9 @@ public class WandRodNecromancerOnUpdate implements IWandRodOnUpdate {
 
         for (EntityAspectOrb orb : orbs) {
             if (!orb.isDead) {
-                int slot =
-                        InventoryUtils.isWandInHotbarWithRoom(orb.getAspect(), orb.getAspectValue(), par1EntityPlayer);
-                if ((orb.orbCooldown == 0)
-                        && (par1EntityPlayer.xpCooldown == 0)
+                int slot = InventoryUtils
+                        .isWandInHotbarWithRoom(orb.getAspect(), orb.getAspectValue(), par1EntityPlayer);
+                if ((orb.orbCooldown == 0) && (par1EntityPlayer.xpCooldown == 0)
                         && (orb.getAspect().isPrimal())
                         && (slot >= 0)) {
                     ItemWandCasting wand = (ItemWandCasting) par1EntityPlayer.inventory.mainInventory[slot].getItem();
@@ -89,11 +90,8 @@ public class WandRodNecromancerOnUpdate implements IWandRodOnUpdate {
                     orb.playSound(
                             "random.orb",
                             0.1F,
-                            0.5F
-                                    * ((par1EntityPlayer.worldObj.rand.nextFloat()
-                                                            - par1EntityPlayer.worldObj.rand.nextFloat())
-                                                    * 0.7F
-                                            + 1.8F));
+                            0.5F * ((par1EntityPlayer.worldObj.rand.nextFloat()
+                                    - par1EntityPlayer.worldObj.rand.nextFloat()) * 0.7F + 1.8F));
                     orb.setDead();
                 }
             }

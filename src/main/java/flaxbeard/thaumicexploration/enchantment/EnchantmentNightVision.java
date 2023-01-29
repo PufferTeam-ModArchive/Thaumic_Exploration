@@ -1,15 +1,17 @@
 package flaxbeard.thaumicexploration.enchantment;
 
-import cpw.mods.fml.common.Loader;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.integration.TTIntegration;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentOxygen;
 import net.minecraft.enchantment.EnchantmentWaterWorker;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemStack;
 
+import cpw.mods.fml.common.Loader;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.integration.TTIntegration;
+
 public class EnchantmentNightVision extends Enchantment {
+
     public EnchantmentNightVision(int par1, int par2) {
         super(par1, par2, EnumEnchantmentType.armor_head);
         this.setName("nightVision");

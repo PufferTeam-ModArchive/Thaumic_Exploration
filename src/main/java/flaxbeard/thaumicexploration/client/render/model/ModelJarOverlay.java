@@ -4,6 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
 public class ModelJarOverlay extends ModelBase {
+
     ModelRenderer Core;
     ModelRenderer Brine;
     ModelRenderer Lid;

@@ -1,10 +1,8 @@
 package flaxbeard.thaumicexploration.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.ThaumicExploration;
 import java.awt.Color;
 import java.util.List;
+
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -16,26 +14,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+
 public class ItemChestSealLinked extends Item {
+
     public IIcon theIcon;
-    public static final String[] itemNames = {
-        "Pale",
-        "Orange",
-        "Magenta",
-        "Light Blue",
-        "Yellow",
-        "Lime",
-        "Pink",
-        "Gray",
-        "Light Gray",
-        "Cyan",
-        "Purple",
-        "Blue",
-        "Brown",
-        "Green",
-        "Red",
-        "Dark"
-    };
+    public static final String[] itemNames = { "Pale", "Orange", "Magenta", "Light Blue", "Yellow", "Lime", "Pink",
+            "Gray", "Light Gray", "Cyan", "Purple", "Blue", "Brown", "Green", "Red", "Dark" };
 
     public ItemChestSealLinked() {
         super();
@@ -49,27 +36,27 @@ public class ItemChestSealLinked extends Item {
         return true;
     }
 
-    //    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int
+    // public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int
     // side, float hitX, float hitY, float hitZ)
-    //    {
-    //        if (!player.canPlayerEdit(x, y, z, side, stack))
-    //        {
-    //            return false;
-    //        }
-    //        else
-    //        {
-    //        	int var11 = world.getBlockId(x, y, z);
-    //        	if (var11 == Block.chest.blockID) {
-    //        		stack = new ItemStack(this.itemID, 1, stack.getItemDamage());
-    //        		return true;
+    // {
+    // if (!player.canPlayerEdit(x, y, z, side, stack))
+    // {
+    // return false;
+    // }
+    // else
+    // {
+    // int var11 = world.getBlockId(x, y, z);
+    // if (var11 == Block.chest.blockID) {
+    // stack = new ItemStack(this.itemID, 1, stack.getItemDamage());
+    // return true;
     //
-    //        	}
-    //        	else
-    //        	{
-    //        		return false;
-    //        	}
-    //        }
-    //    }
+    // }
+    // else
+    // {
+    // return false;
+    // }
+    // }
+    // }
 
     @SideOnly(Side.CLIENT)
     public int getColorFromItemStack(ItemStack par1ItemStack, int par2) {
@@ -87,8 +74,7 @@ public class ItemChestSealLinked extends Item {
                         EntitySheep.fleeceColorTable[j][0],
                         EntitySheep.fleeceColorTable[j][1],
                         EntitySheep.fleeceColorTable[j][2]);
-                Color c2 = new Color(255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue());
-                ;
+                Color c2 = new Color(255 - c.getRed(), 255 - c.getGreen(), 255 - c.getBlue());;
                 return (c2.getRGB() & 0x00ffffff);
             }
         }
@@ -102,17 +88,8 @@ public class ItemChestSealLinked extends Item {
         this.theIcon = par1IconRegister.registerIcon(this.iconString + "Inset");
     }
 
-    public boolean onItemUseFirst(
-            ItemStack stack,
-            EntityPlayer player,
-            World world,
-            int x,
-            int y,
-            int z,
-            int side,
-            float hitX,
-            float hitY,
-            float hitZ) {
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side,
+            float hitX, float hitY, float hitZ) {
         if (!player.canPlayerEdit(x, y, z, side, stack)) {
             return false;
         } else {
@@ -155,10 +132,17 @@ public class ItemChestSealLinked extends Item {
             if (par1ItemStack.stackTagCompound.getInteger("dim") == 1) {
                 dimension = "End";
             }
-            par3List.add("Linked to " + par1ItemStack.stackTagCompound.getInteger("x") + ","
-                    + par1ItemStack.stackTagCompound.getInteger("y") + ","
-                    + par1ItemStack.stackTagCompound.getInteger("z") + " in the " + dimension + " (Network "
-                    + par1ItemStack.stackTagCompound.getInteger("ID") + ")");
+            par3List.add(
+                    "Linked to " + par1ItemStack.stackTagCompound.getInteger("x")
+                            + ","
+                            + par1ItemStack.stackTagCompound.getInteger("y")
+                            + ","
+                            + par1ItemStack.stackTagCompound.getInteger("z")
+                            + " in the "
+                            + dimension
+                            + " (Network "
+                            + par1ItemStack.stackTagCompound.getInteger("ID")
+                            + ")");
         }
     }
 

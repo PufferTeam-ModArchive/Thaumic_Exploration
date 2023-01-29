@@ -1,5 +1,21 @@
 package flaxbeard.thaumicexploration.client;
 
+import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.world.World;
+import net.minecraftforge.client.MinecraftForgeClient;
+
+import thaumcraft.api.aspects.Aspect;
+import thaumcraft.client.fx.ParticleEngine;
+import thaumcraft.client.fx.bolt.FXLightningBolt;
+import thaumcraft.client.fx.particles.FXBoreParticles;
+import thaumcraft.client.fx.particles.FXBoreSparkle;
+import thaumcraft.client.fx.particles.FXEssentiaTrail;
+import thaumcraft.client.fx.particles.FXWisp;
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
@@ -29,21 +45,6 @@ import flaxbeard.thaumicexploration.tile.TileEntityReplicator;
 import flaxbeard.thaumicexploration.tile.TileEntitySoulBrazier;
 import flaxbeard.thaumicexploration.tile.TileEntityThinkTank;
 import flaxbeard.thaumicexploration.tile.TileEntityTrashJar;
-import net.minecraft.block.Block;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.world.World;
-import net.minecraftforge.client.MinecraftForgeClient;
-import thaumcraft.api.aspects.Aspect;
-import thaumcraft.client.fx.ParticleEngine;
-import thaumcraft.client.fx.bolt.FXLightningBolt;
-import thaumcraft.client.fx.particles.FXBoreParticles;
-import thaumcraft.client.fx.particles.FXBoreSparkle;
-import thaumcraft.client.fx.particles.FXEssentiaTrail;
-import thaumcraft.client.fx.particles.FXWisp;
 
 public class ClientProxy extends CommonProxy {
 
@@ -59,8 +60,8 @@ public class ClientProxy extends CommonProxy {
         // RenderCandleFlame(ThaumicExploration.theCandle));
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoundJar.class, new TileEntityBoundJarRender());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoundChest.class, new TileEntityBoundChestRender());
-        ClientRegistry.bindTileEntitySpecialRenderer(
-                TileEntityCrucibleSouls.class, new TileEntityRenderCrucibleSouls());
+        ClientRegistry
+                .bindTileEntitySpecialRenderer(TileEntityCrucibleSouls.class, new TileEntityRenderCrucibleSouls());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityReplicator.class, new TileEntityReplicatorRender());
         // ClientRegistry.bindTileEntitySpecialRenderer(TileEntityNecroPedestal.class, new
         // TileEntityNecroPedestalRenderer());
@@ -79,8 +80,8 @@ public class ClientProxy extends CommonProxy {
         // BlockSkullCandleRenderer());
         RenderingRegistry.registerBlockHandler(ThaumicExploration.everfullUrnRenderID, new BlockEverfullUrnRenderer());
         RenderingRegistry.registerBlockHandler(ThaumicExploration.replicatorRenderID, new BlockReplicatorRenderer());
-        RenderingRegistry.registerBlockHandler(
-                ThaumicExploration.crucibleSoulsRenderID, new BlockCrucibleSoulsRenderer());
+        RenderingRegistry
+                .registerBlockHandler(ThaumicExploration.crucibleSoulsRenderID, new BlockCrucibleSoulsRenderer());
         RenderingRegistry.registerBlockHandler(ThaumicExploration.trashJarRenderID, new BlockTrashJarRenderer());
         MinecraftForgeClient.registerItemRenderer(
                 Item.getItemFromBlock(ThaumicExploration.thinkTankJar),
@@ -112,11 +113,21 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void spawnLightningBolt(
-            World worldObj, double xCoord, double yCoord, double zCoord, double dX, double dY, double dZ) {
+    public void spawnLightningBolt(World worldObj, double xCoord, double yCoord, double zCoord, double dX, double dY,
+            double dZ) {
         if (!worldObj.isRemote) return;
-        FXLightningBolt bolt =
-                new FXLightningBolt(worldObj, xCoord, yCoord, zCoord, dX, dY, dZ, worldObj.rand.nextLong(), 6, 0.5F, 5);
+        FXLightningBolt bolt = new FXLightningBolt(
+                worldObj,
+                xCoord,
+                yCoord,
+                zCoord,
+                dX,
+                dY,
+                dZ,
+                worldObj.rand.nextLong(),
+                6,
+                0.5F,
+                5);
         bolt.defaultFractal();
         bolt.setType(5);
         bolt.setWidth(0.068F);
@@ -141,25 +152,26 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void spawnWaterAtLocation(
-            World worldObj, double xCoord, double yCoord, double zCoord, double dX, double dY, double dZ) {
+    public void spawnWaterAtLocation(World worldObj, double xCoord, double yCoord, double zCoord, double dX, double dY,
+            double dZ) {
         if (!worldObj.isRemote) return;
-        FXEssentiaTrail fx =
-                new FXEssentiaTrail(worldObj, xCoord, yCoord, zCoord, dX, dY, dZ, 5, Aspect.TOOL.getColor(), 1.0F);
+        FXEssentiaTrail fx = new FXEssentiaTrail(
+                worldObj,
+                xCoord,
+                yCoord,
+                zCoord,
+                dX,
+                dY,
+                dZ,
+                5,
+                Aspect.TOOL.getColor(),
+                1.0F);
         ParticleEngine.instance.addEffect(worldObj, fx);
     }
 
     @Override
-    public void spawnEssentiaAtLocation(
-            World worldObj,
-            double xCoord,
-            double yCoord,
-            double zCoord,
-            double dX,
-            double dY,
-            double dZ,
-            int size,
-            int color) {
+    public void spawnEssentiaAtLocation(World worldObj, double xCoord, double yCoord, double zCoord, double dX,
+            double dY, double dZ, int size, int color) {
         if (!worldObj.isRemote) return;
         FXEssentiaTrail fx = new FXEssentiaTrail(worldObj, xCoord, yCoord, zCoord, dX, dY, dZ, size, color, 1.0F);
         ParticleEngine.instance.addEffect(worldObj, fx);
@@ -216,8 +228,8 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void spawnBoreSparkle(
-            World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2, double z2) {
+    public void spawnBoreSparkle(World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2,
+            double z2) {
         if (!worldObj.isRemote) return;
         FXBoreSparkle fb = new FXBoreSparkle(worldObj, xCoord, yCoord, zCoord, x2, y2, z2);
 
@@ -226,11 +238,20 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void spawnHarvestParticle(
-            World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2, double z2) {
+    public void spawnHarvestParticle(World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2,
+            double z2) {
         if (!worldObj.isRemote) return;
         FXBoreParticles fb = new FXBoreParticles(
-                worldObj, xCoord, yCoord, zCoord, x2, y2, z2, Blocks.coal_block, worldObj.rand.nextInt(6), 3);
+                worldObj,
+                xCoord,
+                yCoord,
+                zCoord,
+                x2,
+                y2,
+                z2,
+                Blocks.coal_block,
+                worldObj.rand.nextInt(6),
+                3);
         fb.setAlphaF(0.3F);
         fb.motionX = ((float) worldObj.rand.nextGaussian() * 0.03F);
         fb.motionY = ((float) worldObj.rand.nextGaussian() * 0.03F);
@@ -239,19 +260,20 @@ public class ClientProxy extends CommonProxy {
     }
 
     @Override
-    public void spawnFragmentParticle(
-            World worldObj,
-            double xCoord,
-            double yCoord,
-            double zCoord,
-            double x2,
-            double y2,
-            double z2,
-            Block block,
-            int id) {
+    public void spawnFragmentParticle(World worldObj, double xCoord, double yCoord, double zCoord, double x2, double y2,
+            double z2, Block block, int id) {
         if (!worldObj.isRemote) return;
-        FXBoreParticles fb =
-                new FXBoreParticles(worldObj, xCoord, yCoord, zCoord, x2, y2, z2, block, worldObj.rand.nextInt(6), id);
+        FXBoreParticles fb = new FXBoreParticles(
+                worldObj,
+                xCoord,
+                yCoord,
+                zCoord,
+                x2,
+                y2,
+                z2,
+                block,
+                worldObj.rand.nextInt(6),
+                id);
 
         fb.setAlphaF(0.3F);
         fb.motionX = ((float) worldObj.rand.nextGaussian() * 0.03F);

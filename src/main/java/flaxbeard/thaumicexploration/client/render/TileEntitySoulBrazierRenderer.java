@@ -1,22 +1,25 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import flaxbeard.thaumicexploration.client.render.model.ModelSoulBrazier;
-import flaxbeard.thaumicexploration.tile.TileEntitySoulBrazier;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
 import thaumcraft.client.lib.UtilsFX;
+import flaxbeard.thaumicexploration.client.render.model.ModelSoulBrazier;
+import flaxbeard.thaumicexploration.tile.TileEntitySoulBrazier;
 
 /**
  * Created by nekosune on 03/08/14.
  */
 public class TileEntitySoulBrazierRenderer extends TileEntitySpecialRenderer {
+
     private ModelSoulBrazier brazierModel = new ModelSoulBrazier();
-    private static final ResourceLocation baseTexture =
-            new ResourceLocation("thaumicexploration:textures/models/soulBrazier.png");
+    private static final ResourceLocation baseTexture = new ResourceLocation(
+            "thaumicexploration:textures/models/soulBrazier.png");
 
     @Override
     public void renderTileEntityAt(TileEntity tile, double d0, double d1, double d2, float par8) {
@@ -46,9 +49,8 @@ public class TileEntitySoulBrazierRenderer extends TileEntitySpecialRenderer {
             float alpha = MathHelper.sin(Minecraft.getMinecraft().renderViewEntity.ticksExisted / 8.0F) * 0.1F + 0.5F;
             UtilsFX.bindTexture("textures/misc/node_bubble.png");
 
-            int count = brazier.count % 60 == 0 || (brazier.count - 1) % 60 == 0
-                    ? 7
-                    : 37; // PERHAPS THIS COULD BE THE LIGHTNING
+            int count = brazier.count % 60 == 0 || (brazier.count - 1) % 60 == 0 ? 7 : 37; // PERHAPS THIS COULD BE THE
+                                                                                           // LIGHTNING
 
             UtilsFX.renderFacingQuad(
                     tile.xCoord + 0.5D,

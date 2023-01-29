@@ -1,17 +1,19 @@
 package flaxbeard.thaumicexploration.tile;
 
-import flaxbeard.thaumicexploration.common.StringID;
-import flaxbeard.thaumicexploration.data.BoundJarNetworkManager;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.Packet;
 import net.minecraft.network.play.server.S35PacketUpdateTileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.common.tiles.TileJarFillable;
+import flaxbeard.thaumicexploration.common.StringID;
+import flaxbeard.thaumicexploration.data.BoundJarNetworkManager;
 
 public class TileEntityBoundJar extends TileJarFillable {
+
     public int accessTicks = 0;
 
     public int clientColor = 0;

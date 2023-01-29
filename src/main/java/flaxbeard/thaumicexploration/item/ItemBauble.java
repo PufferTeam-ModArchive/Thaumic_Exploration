@@ -1,14 +1,16 @@
 package flaxbeard.thaumicexploration.item;
 
-import baubles.api.BaubleType;
-import baubles.api.IBauble;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
 import thaumcraft.api.IRunicArmor;
+import baubles.api.BaubleType;
+import baubles.api.IBauble;
 
 public class ItemBauble extends Item implements IBauble, IRunicArmor {
+
     public BaubleType baubleType;
 
     public ItemBauble(BaubleType t) {

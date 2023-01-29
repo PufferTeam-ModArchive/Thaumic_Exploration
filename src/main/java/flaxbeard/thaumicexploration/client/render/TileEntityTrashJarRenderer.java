@@ -1,7 +1,5 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.texture.TextureMap;
@@ -10,7 +8,9 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
+
 import org.lwjgl.opengl.GL11;
+
 import thaumcraft.client.lib.UtilsFX;
 import thaumcraft.client.renderers.models.ModelBrain;
 import thaumcraft.client.renderers.models.ModelJar;
@@ -21,14 +21,17 @@ import thaumcraft.common.config.ConfigBlocks;
 import thaumcraft.common.tiles.TileJar;
 import thaumcraft.common.tiles.TileJarFillable;
 import thaumcraft.common.tiles.TileJarNode;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityTrashJarRenderer extends TileEntitySpecialRenderer {
+
     private ModelJar model = new ModelJar();
     private ModelBrain brain = new ModelBrain();
     private TileNodeRenderer tnr = new TileNodeRenderer();
-    private static final ResourceLocation texture =
-            new ResourceLocation("thaumicexploration:textures/models/jar_oblivion.png");
+    private static final ResourceLocation texture = new ResourceLocation(
+            "thaumicexploration:textures/models/jar_oblivion.png");
 
     public void renderTileEntityAt(TileJar tile, double x, double y, double z, float f) {
 
@@ -61,11 +64,8 @@ public class TileEntityTrashJarRenderer extends TileEntitySpecialRenderer {
                     case 4:
                         GL11.glRotatef(270.0F, 0.0F, 1.0F, 0.0F);
                 }
-                float rot = (((TileJarFillable) tile).aspectFilter.getTag().hashCode()
-                                        + tile.xCoord
-                                        + ((TileJarFillable) tile).facing)
-                                % 4
-                        - 2;
+                float rot = (((TileJarFillable) tile).aspectFilter.getTag().hashCode() + tile.xCoord
+                        + ((TileJarFillable) tile).facing) % 4 - 2;
 
                 GL11.glPushMatrix();
                 GL11.glTranslatef(0.0F, -0.4F, 0.315F);
@@ -73,7 +73,14 @@ public class TileEntityTrashJarRenderer extends TileEntitySpecialRenderer {
                     GL11.glRotatef(rot, 0.0F, 0.0F, 1.0F);
                 }
                 UtilsFX.renderQuadCenteredFromTexture(
-                        "textures/models/label.png", 0.5F, 1.0F, 1.0F, 1.0F, -99, 771, 1.0F);
+                        "textures/models/label.png",
+                        0.5F,
+                        1.0F,
+                        1.0F,
+                        1.0F,
+                        -99,
+                        771,
+                        1.0F);
                 GL11.glPopMatrix();
 
                 GL11.glPushMatrix();
@@ -122,8 +129,8 @@ public class TileEntityTrashJarRenderer extends TileEntitySpecialRenderer {
         if (te.getWorldObj() != null) {
             bright = Math.max(
                     200,
-                    ConfigBlocks.blockJar.getMixedBrightnessForBlock(
-                            te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord));
+                    ConfigBlocks.blockJar
+                            .getMixedBrightnessForBlock(te.getWorldObj(), te.xCoord, te.yCoord, te.zCoord));
         }
         t.setBrightness(bright);
 

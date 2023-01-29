@@ -1,11 +1,13 @@
 package flaxbeard.thaumicexploration.entity;
 
 import java.util.List;
+
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.monster.EntityMob;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.World;
+
 import thaumcraft.common.entities.monster.EntityTaintacleSmall;
 
 public class EntityTaintacleMinion extends EntityTaintacleSmall {

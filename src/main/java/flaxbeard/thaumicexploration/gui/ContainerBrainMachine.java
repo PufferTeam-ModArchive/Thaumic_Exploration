@@ -1,13 +1,15 @@
 package flaxbeard.thaumicexploration.gui;
 
-import flaxbeard.thaumicexploration.misc.SortingInventory;
-import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.util.ChunkCoordinates;
+
 import org.apache.commons.lang3.tuple.MutablePair;
+
 import thaumcraft.common.container.ContainerGhostSlots;
+import flaxbeard.thaumicexploration.misc.SortingInventory;
+import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
 
 public class ContainerBrainMachine extends ContainerGhostSlots {
 
@@ -17,12 +19,8 @@ public class ContainerBrainMachine extends ContainerGhostSlots {
 
     public SortingInventory inventory = new SortingInventory();
 
-    public ContainerBrainMachine(
-            IInventory pinventory,
-            EntityPlayer player,
-            TileEntityAutoSorter sorter,
-            ChunkCoordinates chunkCoordinates,
-            int s) {
+    public ContainerBrainMachine(IInventory pinventory, EntityPlayer player, TileEntityAutoSorter sorter,
+            ChunkCoordinates chunkCoordinates, int s) {
         cc = chunkCoordinates;
         te = sorter;
         side = s;
