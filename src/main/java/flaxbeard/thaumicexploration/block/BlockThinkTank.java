@@ -19,11 +19,11 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-import thaumcraft.common.blocks.JarStepSound;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import flaxbeard.thaumicexploration.ThaumicExploration;
 import flaxbeard.thaumicexploration.tile.TileEntityThinkTank;
+import thaumcraft.common.blocks.JarStepSound;
 
 public class BlockThinkTank extends BlockContainer {
 

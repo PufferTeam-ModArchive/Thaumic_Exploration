@@ -45,17 +45,6 @@ import net.minecraftforge.event.world.WorldEvent;
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.lwjgl.opengl.GL11;
 
-import thaumcraft.api.aspects.AspectList;
-import thaumcraft.api.damagesource.DamageSourceThaumcraft;
-import thaumcraft.api.entities.ITaintedMob;
-import thaumcraft.api.wands.WandRod;
-import thaumcraft.client.lib.UtilsFX;
-import thaumcraft.common.config.Config;
-import thaumcraft.common.config.ConfigBlocks;
-import thaumcraft.common.entities.golems.ItemGolemBell;
-import thaumcraft.common.entities.golems.ItemGolemPlacer;
-import thaumcraft.common.items.wands.ItemWandCasting;
-import thaumcraft.common.tiles.TileJarFillable;
 import baubles.api.BaublesApi;
 import codechicken.lib.packet.PacketCustom;
 import cpw.mods.fml.common.Loader;
@@ -76,6 +65,17 @@ import flaxbeard.thaumicexploration.tile.TileEntityBoundChest;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufOutputStream;
 import io.netty.buffer.Unpooled;
+import thaumcraft.api.aspects.AspectList;
+import thaumcraft.api.damagesource.DamageSourceThaumcraft;
+import thaumcraft.api.entities.ITaintedMob;
+import thaumcraft.api.wands.WandRod;
+import thaumcraft.client.lib.UtilsFX;
+import thaumcraft.common.config.Config;
+import thaumcraft.common.config.ConfigBlocks;
+import thaumcraft.common.entities.golems.ItemGolemBell;
+import thaumcraft.common.entities.golems.ItemGolemPlacer;
+import thaumcraft.common.items.wands.ItemWandCasting;
+import thaumcraft.common.tiles.TileJarFillable;
 
 public class TXEventHandler {
 
@@ -101,8 +101,9 @@ public class TXEventHandler {
             if ((player.inventory.getCurrentItem() != null)
                     && (((player.inventory.getCurrentItem().getItem() instanceof ItemGolemPlacer))
                             || ((player.inventory.getCurrentItem().getItem() instanceof ItemGolemBell)))) {
-
-                renderMarkedBlocks(event, partialTicks, player, time);
+                // this is entirely unfinished stuff. since it might cause rare crashes under certain circumstances
+                // this is disabled for now
+                // renderMarkedBlocks(event, partialTicks, player, time);
             }
         }
     }
