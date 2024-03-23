@@ -1,36 +1,36 @@
 package flaxbeard.thaumicexploration.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.misc.SortingInventory;
-import flaxbeard.thaumicexploration.packet.TXClientPacketHandler;
-import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ChunkCoordinates;
 import net.minecraft.util.ResourceLocation;
+
 import org.apache.commons.lang3.tuple.MutablePair;
 import org.lwjgl.opengl.GL11;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.misc.SortingInventory;
+import flaxbeard.thaumicexploration.packet.TXClientPacketHandler;
+import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
+
 @SideOnly(Side.CLIENT)
 public class GuiBrainMachine extends GuiContainer {
-    private static final ResourceLocation furnaceGuiTextures =
-            new ResourceLocation("thaumicexploration:textures/gui/brains.png");
-    private static final ResourceLocation slotOverlay =
-            new ResourceLocation("thaumicexploration:textures/gui/brainsOverlayy.png");
+
+    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation(
+            "thaumicexploration:textures/gui/brains.png");
+    private static final ResourceLocation slotOverlay = new ResourceLocation(
+            "thaumicexploration:textures/gui/brainsOverlayy.png");
 
     List<GuiButton> buttonListP = new ArrayList();
 
-    public GuiBrainMachine(
-            InventoryPlayer par1InventoryPlayer,
-            EntityPlayer player,
-            TileEntityAutoSorter sorter,
-            ChunkCoordinates chunkCoordinates,
-            int side) {
+    public GuiBrainMachine(InventoryPlayer par1InventoryPlayer, EntityPlayer player, TileEntityAutoSorter sorter,
+            ChunkCoordinates chunkCoordinates, int side) {
 
         super(new ContainerBrainMachine(par1InventoryPlayer, player, sorter, chunkCoordinates, side));
     }
@@ -43,11 +43,11 @@ public class GuiBrainMachine extends GuiContainer {
         GL11.glEnable(3042);
         this.drawTexturedModalRect(k, l, 0, 0, this.xSize, this.ySize);
         //
-        //	        int i1;
+        // int i1;
         //
         //
-        //	        i1 = this.furnaceInventory.getCookProgressScaled(28);
-        //	        this.drawTexturedModalRect(k + 91, l + 24, 198, 11, 32, i1);
+        // i1 = this.furnaceInventory.getCookProgressScaled(28);
+        // this.drawTexturedModalRect(k + 91, l + 24, 198, 11, 32, i1);
         GL11.glDisable(3042);
     }
 

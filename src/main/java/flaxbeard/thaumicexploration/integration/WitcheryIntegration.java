@@ -1,16 +1,18 @@
 package flaxbeard.thaumicexploration.integration;
 
-import com.emoniph.witchery.blocks.BlockKettle;
-import com.emoniph.witchery.blocks.BlockKettle.TileEntityKettle;
-import com.emoniph.witchery.brewing.BlockCauldron;
-import com.emoniph.witchery.brewing.TileEntityCauldron;
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.emoniph.witchery.blocks.BlockKettle;
+import com.emoniph.witchery.blocks.BlockKettle.TileEntityKettle;
+import com.emoniph.witchery.brewing.BlockCauldron;
+import com.emoniph.witchery.brewing.TileEntityCauldron;
+
 public class WitcheryIntegration {
+
     public static boolean isCauldron(Block block) {
         return block.getClass().equals(BlockCauldron.class);
     }
@@ -24,7 +26,11 @@ public class WitcheryIntegration {
         TileEntityCauldron cauldron = (TileEntityCauldron) tile;
         BlockCauldron cauldronBlock = (BlockCauldron) cauldron.getBlockType();
         cauldronBlock.tryFillWith(
-                world, cauldron.xCoord, cauldron.yCoord, cauldron.zCoord, new FluidStack(FluidRegistry.WATER, 1000));
+                world,
+                cauldron.xCoord,
+                cauldron.yCoord,
+                cauldron.zCoord,
+                new FluidStack(FluidRegistry.WATER, 1000));
         cauldron.getWorldObj()
                 .func_147453_f(cauldron.xCoord, cauldron.yCoord, cauldron.zCoord, cauldron.getBlockType());
     }
@@ -42,7 +48,11 @@ public class WitcheryIntegration {
         TileEntityKettle kettle = (TileEntityKettle) tile;
         BlockKettle kettleBlock = (BlockKettle) kettle.getBlockType();
         kettleBlock.tryFillWith(
-                world, kettle.xCoord, kettle.yCoord, kettle.zCoord, new FluidStack(FluidRegistry.WATER, 1000));
+                world,
+                kettle.xCoord,
+                kettle.yCoord,
+                kettle.zCoord,
+                new FluidStack(FluidRegistry.WATER, 1000));
         kettle.getWorldObj().func_147453_f(kettle.xCoord, kettle.yCoord, kettle.zCoord, kettle.getBlockType());
     }
 }

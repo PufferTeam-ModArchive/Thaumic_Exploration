@@ -1,17 +1,20 @@
 package flaxbeard.thaumicexploration.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.tile.TileEntityThinkTank;
 import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.tile.TileEntityThinkTank;
 
 @SideOnly(Side.CLIENT)
 public class GuiThinkTank extends GuiContainer {
-    private static final ResourceLocation furnaceGuiTextures =
-            new ResourceLocation("thaumicexploration:textures/gui/thinktank.png");
+
+    private static final ResourceLocation furnaceGuiTextures = new ResourceLocation(
+            "thaumicexploration:textures/gui/thinktank.png");
     private TileEntityThinkTank furnaceInventory;
 
     public GuiThinkTank(InventoryPlayer par1InventoryPlayer, TileEntityThinkTank par2TileEntityThinkTank) {

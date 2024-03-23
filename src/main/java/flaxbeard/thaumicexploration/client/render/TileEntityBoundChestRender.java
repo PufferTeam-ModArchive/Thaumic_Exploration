@@ -1,40 +1,44 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.client.render.model.ModelChestOverlay;
-import flaxbeard.thaumicexploration.tile.TileEntityBoundChest;
 import java.util.Calendar;
+
 import net.minecraft.client.model.ModelChest;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL12;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.client.render.model.ModelChestOverlay;
+import flaxbeard.thaumicexploration.tile.TileEntityBoundChest;
+
 @SideOnly(Side.CLIENT)
 public class TileEntityBoundChestRender extends TileEntitySpecialRenderer {
+
     private static final ResourceLocation field_110637_a = new ResourceLocation("textures/entity/chest/normal.png");
-    private static final ResourceLocation christmasTexture =
-            new ResourceLocation("textures/entity/chest/christmas.png");
-    private static final ResourceLocation overlayn =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundchestoverlaynone.png");
-    private static final ResourceLocation overlay0 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundchestoverlay0.png");
-    private static final ResourceLocation overlay1 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundchestoverlay1.png");
-    private static final ResourceLocation overlay2 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundchestoverlay2.png");
-    private static final ResourceLocation overlay3 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundchestoverlay3.png");
-    private static final ResourceLocation overlay4 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundchestoverlay4.png");
-    private static final ResourceLocation[] overlays = {overlayn, overlay0, overlay1, overlay2, overlay3, overlay4};
-    private static final ResourceLocation seal =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundchestoverlayseal.png");
-    private static final ResourceLocation christmasSeal =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundchestoverlaysealchristmas.png");
+    private static final ResourceLocation christmasTexture = new ResourceLocation(
+            "textures/entity/chest/christmas.png");
+    private static final ResourceLocation overlayn = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundchestoverlaynone.png");
+    private static final ResourceLocation overlay0 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundchestoverlay0.png");
+    private static final ResourceLocation overlay1 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundchestoverlay1.png");
+    private static final ResourceLocation overlay2 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundchestoverlay2.png");
+    private static final ResourceLocation overlay3 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundchestoverlay3.png");
+    private static final ResourceLocation overlay4 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundchestoverlay4.png");
+    private static final ResourceLocation[] overlays = { overlayn, overlay0, overlay1, overlay2, overlay3, overlay4 };
+    private static final ResourceLocation seal = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundchestoverlayseal.png");
+    private static final ResourceLocation christmasSeal = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundchestoverlaysealchristmas.png");
     /** The Ender Chest Chest's model. */
     private ModelChest theEnderChestModel = new ModelChest();
 
@@ -43,8 +47,8 @@ public class TileEntityBoundChestRender extends TileEntitySpecialRenderer {
     /**
      * Helps to render Ender Chest.
      */
-    public void renderBoundChest(
-            TileEntityBoundChest par1TileEntityEnderChest, double par2, double par4, double par6, float par8) {
+    public void renderBoundChest(TileEntityBoundChest par1TileEntityEnderChest, double par2, double par4, double par6,
+            float par8) {
         int i = 0;
 
         if (par1TileEntityEnderChest.hasWorldObj()) {
@@ -93,8 +97,8 @@ public class TileEntityBoundChestRender extends TileEntitySpecialRenderer {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void renderBoundChestFrame(
-            TileEntityBoundChest par1TileEntityEnderChest, double par2, double par4, double par6, float par8) {
+    public void renderBoundChestFrame(TileEntityBoundChest par1TileEntityEnderChest, double par2, double par4,
+            double par6, float par8) {
 
         int i = 0;
 
@@ -167,8 +171,8 @@ public class TileEntityBoundChestRender extends TileEntitySpecialRenderer {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 
-    public void renderBoundChestSeal(
-            TileEntityBoundChest par1TileEntityEnderChest, double par2, double par4, double par6, float par8) {
+    public void renderBoundChestSeal(TileEntityBoundChest par1TileEntityEnderChest, double par2, double par4,
+            double par6, float par8) {
 
         int i = 0;
 

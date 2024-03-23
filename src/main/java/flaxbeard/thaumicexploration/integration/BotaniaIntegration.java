@@ -2,10 +2,12 @@ package flaxbeard.thaumicexploration.integration;
 
 import net.minecraft.block.Block;
 import net.minecraft.tileentity.TileEntity;
+
 import vazkii.botania.common.block.ModBlocks;
 import vazkii.botania.common.block.tile.TileAltar;
 
 public class BotaniaIntegration {
+
     public static Block getAltar() {
         return ModBlocks.altar;
     }

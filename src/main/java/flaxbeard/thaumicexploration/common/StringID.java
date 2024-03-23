@@ -1,6 +1,9 @@
 package flaxbeard.thaumicexploration.common;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,19 +23,15 @@ public class StringID {
             Random rand = new Random();
 
             int num = rand.nextInt(adjectivesFile.size() - 1);
-            Output = Output
-                    + adjectivesFile.get(num).substring(0, 1).toUpperCase()
+            Output = Output + adjectivesFile.get(num).substring(0, 1).toUpperCase()
                     + adjectivesFile.get(num).substring(1);
 
             num = rand.nextInt(adjectivesFile.size() - 1);
-            Output = Output
-                    + adjectivesFile.get(num).substring(0, 1).toUpperCase()
+            Output = Output + adjectivesFile.get(num).substring(0, 1).toUpperCase()
                     + adjectivesFile.get(num).substring(1);
 
             num = rand.nextInt(animalsFile.size() - 1);
-            Output = Output
-                    + animalsFile.get(num).substring(0, 1).toUpperCase()
-                    + animalsFile.get(num).substring(1);
+            Output = Output + animalsFile.get(num).substring(0, 1).toUpperCase() + animalsFile.get(num).substring(1);
 
         } catch (IOException e) {
             e.printStackTrace();

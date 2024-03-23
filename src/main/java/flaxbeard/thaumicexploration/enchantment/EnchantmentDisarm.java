@@ -1,14 +1,16 @@
 package flaxbeard.thaumicexploration.enchantment;
 
-import cpw.mods.fml.common.Loader;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.integration.TTIntegration;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentLootBonus;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraft.item.ItemStack;
 
+import cpw.mods.fml.common.Loader;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.integration.TTIntegration;
+
 public class EnchantmentDisarm extends Enchantment {
+
     public EnchantmentDisarm(int par1, int par2) {
         super(par1, par2, EnumEnchantmentType.weapon);
         this.setName("disarm");

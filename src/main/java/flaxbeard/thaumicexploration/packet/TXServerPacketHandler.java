@@ -1,19 +1,7 @@
 package flaxbeard.thaumicexploration.packet;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent;
-import cpw.mods.fml.common.network.internal.FMLProxyPacket;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.data.TXWorldData;
-import flaxbeard.thaumicexploration.event.DamageSourceTX;
-import flaxbeard.thaumicexploration.misc.SortingInventory;
-import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
-import flaxbeard.thaumicexploration.tile.TileEntityBoundChest;
-import io.netty.buffer.ByteBuf;
-import io.netty.buffer.ByteBufInputStream;
-import io.netty.buffer.ByteBufOutputStream;
-import io.netty.buffer.Unpooled;
 import java.io.IOException;
+
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
@@ -27,7 +15,22 @@ import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidContainerItem;
+
 import org.apache.commons.lang3.tuple.MutablePair;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.network.FMLNetworkEvent.ServerCustomPacketEvent;
+import cpw.mods.fml.common.network.internal.FMLProxyPacket;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.data.TXWorldData;
+import flaxbeard.thaumicexploration.event.DamageSourceTX;
+import flaxbeard.thaumicexploration.misc.SortingInventory;
+import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
+import flaxbeard.thaumicexploration.tile.TileEntityBoundChest;
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufInputStream;
+import io.netty.buffer.ByteBufOutputStream;
+import io.netty.buffer.Unpooled;
 
 public class TXServerPacketHandler {
 
@@ -49,8 +52,7 @@ public class TXServerPacketHandler {
             SortingInventory inv = switcher.chestSorts.get(MutablePair.of(new ChunkCoordinates(x2, y2, z2), side));
             inv.type = type;
             switcher.chestSorts.put(MutablePair.of(new ChunkCoordinates(x2, y2, z2), side), inv);
-        } catch (Exception e) {
-        }
+        } catch (Exception e) {}
     }
 
     @SubscribeEvent
@@ -80,8 +82,7 @@ public class TXServerPacketHandler {
 
                         if (player.getCurrentArmor(3) != null) {
                             player.getCurrentArmor(3).damageItem(1, player);
-                            if (player.getCurrentArmor(3).getItemDamage()
-                                    == player.getCurrentArmor(3).getMaxDamage()) {
+                            if (player.getCurrentArmor(3).getItemDamage() == player.getCurrentArmor(3).getMaxDamage()) {
                                 player.inventory.armorInventory[3] = null;
                             }
                             // player.worldObj.spawnParticle("explode", (double)(target.posX + Math.random()-0.5F),
@@ -195,8 +196,7 @@ public class TXServerPacketHandler {
                     world.markBlockForUpdate(x, y, z);
                 } else if (type == 2) {
                     world.setBlock(x, y, z, ThaumicExploration.boundChest, world.getBlockMetadata(x, y, z), 1);
-                    int nextID =
-                            player.inventory.getCurrentItem().stackTagCompound.getInteger("ID");
+                    int nextID = player.inventory.getCurrentItem().stackTagCompound.getInteger("ID");
                     ((TileEntityBoundChest) world.getTileEntity(x, y, z)).id = nextID;
                     ((TileEntityBoundChest) world.getTileEntity(x, y, z))
                             .setColor(15 - player.inventory.getCurrentItem().getItemDamage());
@@ -226,11 +226,10 @@ public class TXServerPacketHandler {
                     }
                 } else if (type == 7) {
                     if (player.inventory.getCurrentItem().getItem() instanceof IFluidContainerItem) {
-                        ((IFluidContainerItem) player.inventory.getCurrentItem().getItem())
-                                .fill(
-                                        player.inventory.getCurrentItem(),
-                                        new FluidStack(FluidRegistry.WATER, 1000),
-                                        true);
+                        ((IFluidContainerItem) player.inventory.getCurrentItem().getItem()).fill(
+                                player.inventory.getCurrentItem(),
+                                new FluidStack(FluidRegistry.WATER, 1000),
+                                true);
                     } else if (player.inventory.getCurrentItem().getItem() == Items.bucket) {
 
                         player.inventory.decrStackSize(player.inventory.currentItem, 1);

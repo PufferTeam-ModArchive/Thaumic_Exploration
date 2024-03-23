@@ -1,21 +1,24 @@
 package flaxbeard.thaumicexploration.item;
 
-import baubles.api.BaubleType;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import java.util.List;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+
+import baubles.api.BaubleType;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 
 public class ItemBaubleDiscountRing extends ItemBaubleDiscounter {
-    private String[] textures = {"ringAer", "ringTerra", "ringIgnis", "ringAqua", "ringOrdo", "ringPerdito"};
-    public static int[] correspondingShards = {0, 3, 1, 2, 4, 5};
+
+    private String[] textures = { "ringAer", "ringTerra", "ringIgnis", "ringAqua", "ringOrdo", "ringPerdito" };
+    public static int[] correspondingShards = { 0, 3, 1, 2, 4, 5 };
     private IIcon[] icons = new IIcon[6];
 
     public ItemBaubleDiscountRing() {

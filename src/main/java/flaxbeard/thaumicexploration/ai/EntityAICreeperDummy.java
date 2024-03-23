@@ -5,6 +5,7 @@ import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.monster.EntityCreeper;
 
 public class EntityAICreeperDummy extends EntityAIBase {
+
     /** The creeper that is swelling. */
     EntityCreeper swellingCreeper;
 

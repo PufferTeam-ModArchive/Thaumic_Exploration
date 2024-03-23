@@ -1,6 +1,5 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import flaxbeard.thaumicexploration.tile.TileEntityReplicator;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.entity.RenderManager;
@@ -11,15 +10,18 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
+import flaxbeard.thaumicexploration.tile.TileEntityReplicator;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.AspectList;
 import thaumcraft.common.lib.crafting.ThaumcraftCraftingManager;
 
 public class TileEntityReplicatorRender extends TileEntitySpecialRenderer {
 
-    private static final ResourceLocation largeJarTexture =
-            new ResourceLocation("thaumicexploration:textures/blocks/replicatorRunes.png");
+    private static final ResourceLocation largeJarTexture = new ResourceLocation(
+            "thaumicexploration:textures/blocks/replicatorRunes.png");
 
     @Override
     public void renderTileEntityAt(TileEntity tileentity, double d0, double d1, double d2, float f) {
@@ -141,10 +143,10 @@ public class TileEntityReplicatorRender extends TileEntitySpecialRenderer {
                 float offset = (ot.getAmount(aspect) - replicator.recipeEssentia.getAmount(aspect));
                 offset = offset / ot.getAmount(aspect);
                 if (i < 1 || i > 3) {
-                    //  tessellator.addVertexWithUV(d0 + 1 - 0.5F, d1 + offset, d2 - 0.001 - 0.5F, 0, 1.0 - offset);
+                    // tessellator.addVertexWithUV(d0 + 1 - 0.5F, d1 + offset, d2 - 0.001 - 0.5F, 0, 1.0 - offset);
                     // tessellator.addVertexWithUV(d0 + 1 - 0.5F, d1 +0, d2 - 0.001 - 0.5F, 0,1);
                     // tessellator.addVertexWithUV(d0 + 0 - 0.5F, d1 + 0, d2 - 0.001 - 0.5F, 1, 1);
-                    //  tessellator.addVertexWithUV(d0 + 0 - 0.5F, d1 + offset,d2 - 0.001 - 0.5F, 1, 1.0 - offset);
+                    // tessellator.addVertexWithUV(d0 + 0 - 0.5F, d1 + offset,d2 - 0.001 - 0.5F, 1, 1.0 - offset);
                 } else {
                     tessellator.addVertexWithUV(d0 + 1 - 0.5F, d1 + offset, d2 - 0.001 - 0.5F, 0, 1.0 - offset);
                     tessellator.addVertexWithUV(d0 + 1 - 0.5F, d1 + 0, d2 - 0.001 - 0.5F, 0, 1);

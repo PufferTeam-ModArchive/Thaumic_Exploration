@@ -1,16 +1,18 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.block.BlockCrucibleSouls;
-import flaxbeard.thaumicexploration.tile.TileEntityCrucibleSouls;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.block.BlockCrucibleSouls;
+import flaxbeard.thaumicexploration.tile.TileEntityCrucibleSouls;
 import thaumcraft.client.renderers.block.BlockRenderer;
 
 public class BlockCrucibleSoulsRenderer extends BlockRenderer implements ISimpleBlockRenderingHandler {
+
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer) {
         block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);
         renderer.setRenderBoundsFromBlock(block);
@@ -26,8 +28,8 @@ public class BlockCrucibleSoulsRenderer extends BlockRenderer implements ISimple
                 true);
     }
 
-    public boolean renderWorldBlock(
-            IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+            RenderBlocks renderer) {
 
         int metadata = world.getBlockMetadata(x, y, z);
         block.setBlockBounds(0.0F, 0.0F, 0.0F, 1.0F, 1.0F, 1.0F);

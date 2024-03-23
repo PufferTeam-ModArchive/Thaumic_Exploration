@@ -2,15 +2,17 @@ package flaxbeard.thaumicexploration.wand;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.wands.IWandRodOnUpdate;
 import thaumcraft.common.items.wands.ItemWandCasting;
 
 public class WandRodAmberOnUpdate implements IWandRodOnUpdate {
 
-    private Aspect[] aspects = {Aspect.ORDER, Aspect.ENTROPY, Aspect.EARTH, Aspect.WATER, Aspect.AIR, Aspect.FIRE};
+    private Aspect[] aspects = { Aspect.ORDER, Aspect.ENTROPY, Aspect.EARTH, Aspect.WATER, Aspect.AIR, Aspect.FIRE };
 
     @Override
     public void onUpdate(ItemStack itemstack, EntityPlayer player) {

@@ -1,7 +1,5 @@
 package flaxbeard.thaumicexploration.misc.brazier;
 
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.tile.TileEntitySoulBrazier;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,10 +10,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.server.MinecraftServer;
 import net.minecraftforge.common.DimensionManager;
+
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.tile.TileEntitySoulBrazier;
+import thaumcraft.common.lib.network.PacketHandler;
+import thaumcraft.common.lib.network.playerdata.PacketSyncWarp;
 
 public class SoulBrazierUtils {
 
@@ -53,6 +57,10 @@ public class SoulBrazierUtils {
         return aDistance <= 50;
     }
 
+    public static void syncPermWarp(EntityPlayerMP player) {
+        PacketHandler.INSTANCE.sendTo(new PacketSyncWarp(player, (byte) 0), player);
+    }
+
     /*
      * Player Data Handling - Warp Queue
      */
@@ -76,8 +84,16 @@ public class SoulBrazierUtils {
             return;
         }
         String aUUID = aPlayer.toString();
-        String warpKey = aUUID + "@" + aTile.storedWarp + "@" + aTile.xCoord + "@" + aTile.yCoord + "@" + aTile.zCoord
-                + "" + aTile.getWorldObj().provider.dimensionId;
+        String warpKey = aUUID + "@"
+                + aTile.storedWarp
+                + "@"
+                + aTile.xCoord
+                + "@"
+                + aTile.yCoord
+                + "@"
+                + aTile.zCoord
+                + ""
+                + aTile.getWorldObj().provider.dimensionId;
         ArrayList<String> aNewDataList = new ArrayList<String>();
         ArrayList<String> aWarpData = readPlayerWarpQueueDataFromFile();
         if (aWarpData.contains(warpKey)) {

@@ -4,11 +4,11 @@ import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.IItemRenderer;
-import net.minecraftforge.client.IItemRenderer.ItemRenderType;
-import net.minecraftforge.client.IItemRenderer.ItemRendererHelper;
+
 import org.lwjgl.opengl.GL11;
 
 public class ItemRenderThinkTank implements IItemRenderer {
+
     TileEntityThinkTankRender render;
     private TileEntity dummytile;
 

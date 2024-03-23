@@ -1,13 +1,15 @@
 package flaxbeard.thaumicexploration.misc.brazier;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
-import flaxbeard.thaumicexploration.tile.TileEntitySoulBrazier;
 import java.util.UUID;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.gameevent.PlayerEvent.PlayerLoggedInEvent;
+import flaxbeard.thaumicexploration.tile.TileEntitySoulBrazier;
 import thaumcraft.common.Thaumcraft;
 
 public class SoulBrazierQueue {
@@ -26,7 +28,11 @@ public class SoulBrazierQueue {
                 int aTotalWarp = aCurrentWarp + aQueueData.aQueuedWarpToAdd;
                 Thaumcraft.proxy.getPlayerKnowledge().setWarpPerm(aPlayerName, aTotalWarp);
                 if (SoulBrazierUtils.removePlayerDataFromWarpQueue(
-                        aPlayerUUID, aQueueData.aTileX, aQueueData.aTileY, aQueueData.aTileZ, aQueueData.aDimension)) {
+                        aPlayerUUID,
+                        aQueueData.aTileX,
+                        aQueueData.aTileY,
+                        aQueueData.aTileZ,
+                        aQueueData.aDimension)) {
                     updateSoulBrazier(
                             getWorldFromID(aQueueData.aDimension),
                             aQueueData.aTileX,

@@ -1,15 +1,17 @@
 package flaxbeard.thaumicexploration.wand;
 
 import java.util.ArrayList;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.wands.IWandRodOnUpdate;
 import thaumcraft.common.items.wands.ItemWandCasting;
 
 public class WandRodTransmutationOnUpdate implements IWandRodOnUpdate {
 
-    private Aspect[] aspects = {Aspect.ORDER, Aspect.ENTROPY, Aspect.EARTH, Aspect.WATER, Aspect.AIR, Aspect.FIRE};
+    private Aspect[] aspects = { Aspect.ORDER, Aspect.ENTROPY, Aspect.EARTH, Aspect.WATER, Aspect.AIR, Aspect.FIRE };
 
     @Override
     public void onUpdate(ItemStack itemstack, EntityPlayer player) {
@@ -30,8 +32,8 @@ public class WandRodTransmutationOnUpdate implements IWandRodOnUpdate {
         if (numberUnder90 > 0) {
             for (int i = 0; i < 6; i++) {
                 double visCount = ((ItemWandCasting) itemstack.getItem()).getVis(itemstack, this.aspects[i]);
-                double cutoffPercent =
-                        (((((ItemWandCasting) itemstack.getItem()).getMaxVis(itemstack)) / 10) * 9) + 0.1;
+                double cutoffPercent = (((((ItemWandCasting) itemstack.getItem()).getMaxVis(itemstack)) / 10) * 9)
+                        + 0.1;
                 double excessVis = (visCount - cutoffPercent);
 
                 if (excessVis > 0) {
@@ -46,10 +48,10 @@ public class WandRodTransmutationOnUpdate implements IWandRodOnUpdate {
             double wastedVis = 0;
             int eachToAdd = (int) ((totalExcessVis) / (lowAspects.size() * 4));
             for (int z = 0; z < lowAspects.size(); z++) {
-                double visCount =
-                        ((ItemWandCasting) itemstack.getItem()).getVis(itemstack, this.aspects[lowAspects.get(z)]);
-                double myWastedVis =
-                        visCount - ((ItemWandCasting) itemstack.getItem()).getMaxVis(itemstack) + eachToAdd;
+                double visCount = ((ItemWandCasting) itemstack.getItem())
+                        .getVis(itemstack, this.aspects[lowAspects.get(z)]);
+                double myWastedVis = visCount - ((ItemWandCasting) itemstack.getItem()).getMaxVis(itemstack)
+                        + eachToAdd;
                 if (myWastedVis > 0) {
                     wastedVis += myWastedVis;
                 }
@@ -66,24 +68,24 @@ public class WandRodTransmutationOnUpdate implements IWandRodOnUpdate {
         // }
 
         // if (player.ticksExisted % 200 == 0) {
-        //			for(int i=0;i<6;i++) {
-        //				if (((ItemWandCasting) itemstack.getItem()).getVis(itemstack, this.aspects[i]) > ((((ItemWandCasting)
+        // for(int i=0;i<6;i++) {
+        // if (((ItemWandCasting) itemstack.getItem()).getVis(itemstack, this.aspects[i]) > ((((ItemWandCasting)
         // itemstack.getItem()).getMaxVis(itemstack)) / 10) * 9) {
-        //					int expendableVis = (int) (((ItemWandCasting) itemstack.getItem()).getVis(itemstack, this.aspects[i]) -
+        // int expendableVis = (int) (((ItemWandCasting) itemstack.getItem()).getVis(itemstack, this.aspects[i]) -
         // 22.5);
-        //					for(int z=0;z<expendableVis;z++) {
-        //						for(int k=0;k<6;k++) {
-        //							if (k != i) {
-        //								int visCount = ((ItemWandCasting) itemstack.getItem()).getVis(itemstack, this.aspects[k]);
-        //								if (visCount < (((((ItemWandCasting) itemstack.getItem()).getMaxVis(itemstack)) / 10) * 9)) {
-        //									((ItemWandCasting)itemstack.getItem()).addVis(itemstack, this.aspects[k], 1, true);
-        //									((ItemWandCasting)itemstack.getItem()).addVis(itemstack, this.aspects[i], -1, true);
-        //								}
-        //							}
-        //						}
-        //					}
-        //				}
-        //			}
+        // for(int z=0;z<expendableVis;z++) {
+        // for(int k=0;k<6;k++) {
+        // if (k != i) {
+        // int visCount = ((ItemWandCasting) itemstack.getItem()).getVis(itemstack, this.aspects[k]);
+        // if (visCount < (((((ItemWandCasting) itemstack.getItem()).getMaxVis(itemstack)) / 10) * 9)) {
+        // ((ItemWandCasting)itemstack.getItem()).addVis(itemstack, this.aspects[k], 1, true);
+        // ((ItemWandCasting)itemstack.getItem()).addVis(itemstack, this.aspects[i], -1, true);
+        // }
+        // }
+        // }
+        // }
+        // }
+        // }
         // }
 
     }

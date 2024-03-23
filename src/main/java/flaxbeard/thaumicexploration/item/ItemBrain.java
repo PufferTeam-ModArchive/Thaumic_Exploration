@@ -8,16 +8,16 @@ public class ItemBrain extends Item {
         super();
     }
     //
-    //	 @Override
-    //     public Entity createEntity(World world, Entity location, ItemStack itemstack) {
+    // @Override
+    // public Entity createEntity(World world, Entity location, ItemStack itemstack) {
     //
-    //             //return new EntityItemBrain(world, location.posX, location.posY, location.posZ, itemstack);
-    //     }
+    // //return new EntityItemBrain(world, location.posX, location.posY, location.posZ, itemstack);
+    // }
     //
-    //     @Override
-    //     public boolean hasCustomEntity(ItemStack stack) {
-    //             return true;
-    //     }
+    // @Override
+    // public boolean hasCustomEntity(ItemStack stack) {
+    // return true;
+    // }
     //
     //
 

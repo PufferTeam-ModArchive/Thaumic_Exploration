@@ -1,6 +1,7 @@
 package flaxbeard.thaumicexploration.block;
 
 import java.util.Random;
+
 import net.minecraft.block.BlockIce;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;

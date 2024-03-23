@@ -1,11 +1,8 @@
 package flaxbeard.thaumicexploration.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.tile.TileEntityEverburnUrn;
 import java.util.List;
 import java.util.Random;
+
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -19,6 +16,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.FluidContainerRegistry;
 import net.minecraftforge.fluids.IFluidContainerItem;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.tile.TileEntityEverburnUrn;
 
 public class BlockEverburnUrn extends BlockContainer {
 
@@ -60,8 +62,8 @@ public class BlockEverburnUrn extends BlockContainer {
         setBlockBounds(f1, 0.0F, f1, f, 1.0F, f);
     }
 
-    public void addCollisionBoxesToList(
-            World world, int i, int j, int k, AxisAlignedBB axisalignedbb, List arraylist, Entity par7Entity) {
+    public void addCollisionBoxesToList(World world, int i, int j, int k, AxisAlignedBB axisalignedbb, List arraylist,
+            Entity par7Entity) {
         float f = (14.0F / 16.0F);
         float f1 = (2.0F / 16.0F);
         float f2 = (9.0F / 16.0F);
@@ -106,16 +108,8 @@ public class BlockEverburnUrn extends BlockContainer {
         return ThaumicExploration.everfullUrnRenderID;
     }
 
-    public boolean onBlockActivated(
-            World world,
-            int par2,
-            int par3,
-            int par4,
-            EntityPlayer entityPlayer,
-            int par6,
-            float par7,
-            float par8,
-            float par9) {
+    public boolean onBlockActivated(World world, int par2, int par3, int par4, EntityPlayer entityPlayer, int par6,
+            float par7, float par8, float par9) {
 
         TileEntityEverburnUrn entity = (TileEntityEverburnUrn) world.getTileEntity(par2, par3, par4);
 
@@ -133,8 +127,7 @@ public class BlockEverburnUrn extends BlockContainer {
                     world.markBlockForUpdate(par2, par3, par4);
                 }
             } else if (entityPlayer.inventory.getCurrentItem().getItem() instanceof IFluidContainerItem) {
-                IFluidContainerItem itm = (IFluidContainerItem)
-                        entityPlayer.inventory.getCurrentItem().getItem();
+                IFluidContainerItem itm = (IFluidContainerItem) entityPlayer.inventory.getCurrentItem().getItem();
                 int fill = itm.fill(entityPlayer.inventory.getCurrentItem(), entity.getFluid(), true);
                 if (fill > 0) {
                     entity.drain(fill, true);

@@ -1,10 +1,11 @@
 package flaxbeard.thaumicexploration.block;
 
-import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
+
+import flaxbeard.thaumicexploration.tile.TileEntityAutoSorter;
 
 public class BlockAutoSorter extends BlockContainer {
 

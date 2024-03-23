@@ -5,6 +5,7 @@ import net.minecraft.block.BlockCauldron;
 import net.minecraft.world.World;
 
 public class VanillaIntegration {
+
     public static boolean isVanillaCauldron(Block block) {
         return block.getClass().equals(BlockCauldron.class);
     }

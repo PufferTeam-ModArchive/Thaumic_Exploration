@@ -1,15 +1,17 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.block.BlockEverfullUrn;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.EntityRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.block.BlockEverfullUrn;
 
 public class BlockEverfullUrnRenderer implements ISimpleBlockRenderingHandler {
 
@@ -121,8 +123,8 @@ public class BlockEverfullUrnRenderer implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(
-            IBlockAccess world, int par2, int par3, int par4, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int par2, int par3, int par4, Block block, int modelId,
+            RenderBlocks renderer) {
         Tessellator tessellator = Tessellator.instance;
         tessellator.setBrightness(block.getMixedBrightnessForBlock(world, par2, par3, par4));
 

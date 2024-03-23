@@ -1,11 +1,8 @@
 package flaxbeard.thaumicexploration.tile;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.block.BlockBoundChest;
-import flaxbeard.thaumicexploration.data.BoundChestWorldData;
 import java.util.Iterator;
 import java.util.List;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ContainerChest;
 import net.minecraft.inventory.IInventory;
@@ -20,7 +17,13 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraftforge.common.util.Constants;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.block.BlockBoundChest;
+import flaxbeard.thaumicexploration.data.BoundChestWorldData;
+
 public class TileEntityBoundChest extends TileEntity implements IInventory {
+
     private ItemStack[] chestContents = new ItemStack[36];
 
     public BoundChestWorldData myChest;
@@ -224,11 +227,11 @@ public class TileEntityBoundChest extends TileEntity implements IInventory {
      * Do not make give this method the name canInteractWith because it clashes with Container
      */
     public boolean isUseableByPlayer(EntityPlayer par1EntityPlayer) {
-        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this
-                ? false
+        return this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord) != this ? false
                 : par1EntityPlayer.getDistanceSq(
-                                (double) this.xCoord + 0.5D, (double) this.yCoord + 0.5D, (double) this.zCoord + 0.5D)
-                        <= 64.0D;
+                        (double) this.xCoord + 0.5D,
+                        (double) this.yCoord + 0.5D,
+                        (double) this.zCoord + 0.5D) <= 64.0D;
     }
 
     /**
@@ -266,8 +269,7 @@ public class TileEntityBoundChest extends TileEntity implements IInventory {
             }
             this.chestContents = myChest.getChestContents();
         }
-        if (!this.worldObj.isRemote
-                && this.numUsingPlayers != 0
+        if (!this.worldObj.isRemote && this.numUsingPlayers != 0
                 && (this.ticksSinceSync + this.xCoord + this.yCoord + this.zCoord) % 200 == 0) {
             this.numUsingPlayers = 0;
             f = 5.0F;
@@ -288,9 +290,8 @@ public class TileEntityBoundChest extends TileEntity implements IInventory {
                 if (entityplayer.openContainer instanceof ContainerChest) {
                     IInventory iinventory = ((ContainerChest) entityplayer.openContainer).getLowerChestInventory();
 
-                    if (iinventory == this
-                            || iinventory instanceof InventoryLargeChest
-                                    && ((InventoryLargeChest) iinventory).isPartOfLargeChest(this)) {
+                    if (iinventory == this || iinventory instanceof InventoryLargeChest
+                            && ((InventoryLargeChest) iinventory).isPartOfLargeChest(this)) {
                         ++this.numUsingPlayers;
                     }
                 }
@@ -378,31 +379,31 @@ public class TileEntityBoundChest extends TileEntity implements IInventory {
     private void updateAccessTicks() {
         worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
         // this.mar
-        //		if (!this.worldObj.isRemote) {
-        //			ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
-        //	        DataOutputStream outputStream = new DataOutputStream(bos);
+        // if (!this.worldObj.isRemote) {
+        // ByteArrayOutputStream bos = new ByteArrayOutputStream(8);
+        // DataOutputStream outputStream = new DataOutputStream(bos);
         //
-        //	        try
-        //	        {
-        //	            outputStream.writeByte(1);
-        //	            outputStream.writeInt(this.worldObj.provider.dimensionId);
-        //	            outputStream.writeInt(this.xCoord);
-        //	            outputStream.writeInt(this.yCoord);
-        //	            outputStream.writeInt(this.zCoord);
-        //	            outputStream.writeInt(this.accessTicks);
-        //	        }
-        //	        catch (Exception ex)
-        //	        {
-        //	            ex.printStackTrace();
-        //	        }
+        // try
+        // {
+        // outputStream.writeByte(1);
+        // outputStream.writeInt(this.worldObj.provider.dimensionId);
+        // outputStream.writeInt(this.xCoord);
+        // outputStream.writeInt(this.yCoord);
+        // outputStream.writeInt(this.zCoord);
+        // outputStream.writeInt(this.accessTicks);
+        // }
+        // catch (Exception ex)
+        // {
+        // ex.printStackTrace();
+        // }
         //
-        //	        Packet250CustomPayload packet = new Packet250CustomPayload();
-        //	        packet.channel = "tExploration";
-        //	        packet.data = bos.toByteArray();
-        //	        packet.length = bos.size();
-        //	        PacketDispatcher.sendPacketToAllPlayers(packet);
-        //	        System.out.println("sent");
-        //		}
+        // Packet250CustomPayload packet = new Packet250CustomPayload();
+        // packet.channel = "tExploration";
+        // packet.data = bos.toByteArray();
+        // packet.length = bos.size();
+        // PacketDispatcher.sendPacketToAllPlayers(packet);
+        // System.out.println("sent");
+        // }
     }
 
     /**
@@ -471,8 +472,8 @@ public class TileEntityBoundChest extends TileEntity implements IInventory {
         }
 
         ++this.numUsingPlayers;
-        this.worldObj.addBlockEvent(
-                this.xCoord, this.yCoord, this.zCoord, this.getBlockType(), 1, this.numUsingPlayers);
+        this.worldObj
+                .addBlockEvent(this.xCoord, this.yCoord, this.zCoord, this.getBlockType(), 1, this.numUsingPlayers);
         this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
         this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, this.getBlockType());
     }
@@ -482,8 +483,8 @@ public class TileEntityBoundChest extends TileEntity implements IInventory {
         if (this.getBlockType() != null && this.getBlockType() instanceof BlockBoundChest) {
 
             --this.numUsingPlayers;
-            this.worldObj.addBlockEvent(
-                    this.xCoord, this.yCoord, this.zCoord, this.getBlockType(), 1, this.numUsingPlayers);
+            this.worldObj
+                    .addBlockEvent(this.xCoord, this.yCoord, this.zCoord, this.getBlockType(), 1, this.numUsingPlayers);
             this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord, this.zCoord, this.getBlockType());
             this.worldObj.notifyBlocksOfNeighborChange(this.xCoord, this.yCoord - 1, this.zCoord, this.getBlockType());
         }

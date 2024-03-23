@@ -1,9 +1,5 @@
 package flaxbeard.thaumicexploration.block;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.tile.TileEntityReplicator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
@@ -17,7 +13,13 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.oredict.OreDictionary;
+
 import org.apache.commons.lang3.tuple.MutablePair;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.tile.TileEntityReplicator;
 import thaumcraft.common.items.wands.ItemWandCasting;
 import thaumcraft.common.lib.utils.InventoryUtils;
 
@@ -59,8 +61,8 @@ public class BlockReplicator extends BlockContainer {
         }
     }
 
-    public boolean onBlockActivated(
-            World world, int x, int y, int z, EntityPlayer player, int side, float par7, float par8, float par9) {
+    public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float par7,
+            float par8, float par9) {
         if (world.isRemote) {
             return true;
         }
@@ -68,15 +70,13 @@ public class BlockReplicator extends BlockContainer {
         TileEntity tileEntity = world.getTileEntity(x, y, z);
         if ((tileEntity instanceof TileEntityReplicator)) {
             TileEntityReplicator ped = (TileEntityReplicator) tileEntity;
-            if (ped.crafting
-                    && (player.getCurrentEquippedItem() == null
-                            || !(player.getCurrentEquippedItem().getItem() instanceof ItemWandCasting))) {
+            if (ped.crafting && (player.getCurrentEquippedItem() == null
+                    || !(player.getCurrentEquippedItem().getItem() instanceof ItemWandCasting))) {
                 ped.cancelCrafting();
             }
 
-            if (ped.getStackInSlot(0) != null
-                    && (player.getCurrentEquippedItem() == null
-                            || !(player.getCurrentEquippedItem().getItem() instanceof ItemWandCasting))) {
+            if (ped.getStackInSlot(0) != null && (player.getCurrentEquippedItem() == null
+                    || !(player.getCurrentEquippedItem().getItem() instanceof ItemWandCasting))) {
                 ItemStack itemstack = ped.getStackInSlot(0);
 
                 if (itemstack.stackSize > 0) {
@@ -100,14 +100,12 @@ public class BlockReplicator extends BlockContainer {
                     entityitem.motionZ = (double) ((float) world.rand.nextGaussian() * f3);
 
                     if (itemstack.hasTagCompound()) {
-                        entityitem.getEntityItem().setTagCompound((NBTTagCompound)
-                                itemstack.getTagCompound().copy());
+                        entityitem.getEntityItem().setTagCompound((NBTTagCompound) itemstack.getTagCompound().copy());
                     }
                     world.spawnEntityInWorld(entityitem);
                 }
                 TileEntity te = world.getTileEntity(x, y, z);
-                ItemStack template =
-                        ((TileEntityReplicator) te).getStackInSlot(0).copy();
+                ItemStack template = ((TileEntityReplicator) te).getStackInSlot(0).copy();
                 if (template.stackSize > 0) {
                     template.stackSize = template.stackSize -= 1;
 
@@ -126,12 +124,12 @@ public class BlockReplicator extends BlockContainer {
 
                 return true;
             }
-            if (player.getCurrentEquippedItem() != null
-                    && (ThaumicExploration.allowedItems.contains(MutablePair.of(
-                                    player.getCurrentEquippedItem().getItem(),
-                                    player.getCurrentEquippedItem().getItemDamage()))
-                            || ThaumicExploration.allowedItems.contains(MutablePair.of(
-                                    player.getCurrentEquippedItem().getItem(), OreDictionary.WILDCARD_VALUE)))) {
+            if (player.getCurrentEquippedItem() != null && (ThaumicExploration.allowedItems.contains(
+                    MutablePair.of(
+                            player.getCurrentEquippedItem().getItem(),
+                            player.getCurrentEquippedItem().getItemDamage()))
+                    || ThaumicExploration.allowedItems.contains(
+                            MutablePair.of(player.getCurrentEquippedItem().getItem(), OreDictionary.WILDCARD_VALUE)))) {
                 // IN
                 ItemStack i = player.getCurrentEquippedItem().copy();
                 i.stackSize = 0;
@@ -140,7 +138,7 @@ public class BlockReplicator extends BlockContainer {
                 if (player.getCurrentEquippedItem().stackSize == 0) {
                     player.setCurrentItemOrArmor(0, null);
                 }
-                //		        player.inventory.onInventoryChanged();
+                // player.inventory.onInventoryChanged();
                 world.markBlockForUpdate(x, y, z);
                 world.playSoundEffect(
                         x,

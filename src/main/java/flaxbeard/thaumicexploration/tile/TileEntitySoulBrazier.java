@@ -1,11 +1,7 @@
 package flaxbeard.thaumicexploration.tile;
 
-import com.mojang.authlib.GameProfile;
-import flaxbeard.thaumicexploration.ThaumicExploration;
-import flaxbeard.thaumicexploration.chunkLoader.ITXChunkLoader;
-import flaxbeard.thaumicexploration.common.ConfigTX;
-import flaxbeard.thaumicexploration.misc.brazier.SoulBrazierUtils;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTUtil;
@@ -15,6 +11,13 @@ import net.minecraft.world.ChunkCoordIntPair;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraftforge.common.ForgeChunkManager;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import com.mojang.authlib.GameProfile;
+
+import flaxbeard.thaumicexploration.ThaumicExploration;
+import flaxbeard.thaumicexploration.chunkLoader.ITXChunkLoader;
+import flaxbeard.thaumicexploration.common.ConfigTX;
+import flaxbeard.thaumicexploration.misc.brazier.SoulBrazierUtils;
 import thaumcraft.api.ThaumcraftApiHelper;
 import thaumcraft.api.aspects.Aspect;
 import thaumcraft.api.aspects.IEssentiaTransport;
@@ -92,6 +95,8 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
             active = true;
             storedWarp += playerWarp;
             Thaumcraft.proxy.getPlayerKnowledge().setWarpPerm(owner.getName(), 0);
+            SoulBrazierUtils.syncPermWarp((EntityPlayerMP) player);
+
             worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             return true;
         }
@@ -121,7 +126,7 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
 
         getPower();
         if (active) {
-            if (heldChunk == null && ConfigTX.allowSBChunkLoading == true) addTicket();
+            if (heldChunk == null && ConfigTX.allowSBChunkLoading) addTicket();
             if (this.count % 60 == 0) spendPower();
             if (!checkPower()) {
                 active = false;
@@ -132,7 +137,12 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
                     if (SoulBrazierUtils.isPlayerOnline(owner.getId())) {
                         int aCurrentWarp = Thaumcraft.proxy.getPlayerKnowledge().getWarpPerm(owner.getName());
                         int aTotalWarp = aCurrentWarp + storedWarp;
-                        Thaumcraft.proxy.getPlayerKnowledge().setWarpPerm(owner.getName(), aTotalWarp);
+
+                        if (aCurrentWarp != aTotalWarp) {
+                            Thaumcraft.proxy.getPlayerKnowledge().setWarpPerm(owner.getName(), aTotalWarp);
+                            EntityPlayer player = SoulBrazierUtils.getPlayerFromUUID(owner.getId());
+                            SoulBrazierUtils.syncPermWarp((EntityPlayerMP) player);
+                        }
                     }
                     // Queue warp addition to file for next join.
                     else {
@@ -141,8 +151,8 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
                     }
                 }
                 storedWarp = 0;
-                ForgeChunkManager.unforceChunk(
-                        this.heldChunk, new ChunkCoordIntPair(this.xCoord >> 4, this.zCoord >> 4));
+                ForgeChunkManager
+                        .unforceChunk(this.heldChunk, new ChunkCoordIntPair(this.xCoord >> 4, this.zCoord >> 4));
                 this.heldChunk = null;
                 worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
             }
@@ -150,8 +160,8 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
     }
 
     public void fillJar() {
-        TileEntity te = ThaumcraftApiHelper.getConnectableTile(
-                this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.DOWN);
+        TileEntity te = ThaumcraftApiHelper
+                .getConnectableTile(this.worldObj, this.xCoord, this.yCoord, this.zCoord, ForgeDirection.DOWN);
         if (te != null) {
             IEssentiaTransport ic = (IEssentiaTransport) te;
             if (!ic.canOutputTo(ForgeDirection.UP)) {
@@ -222,8 +232,7 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
                 x = this.xCoord + this.worldObj.rand.nextInt(16) - this.worldObj.rand.nextInt(16);
                 z = this.zCoord + this.worldObj.rand.nextInt(16) - this.worldObj.rand.nextInt(16);
                 y = this.yCoord + this.worldObj.rand.nextInt(16) - this.worldObj.rand.nextInt(16);
-                if (!BlockTaintFibres.spreadFibres(this.worldObj, x, y, z))
-                    ;
+                if (!BlockTaintFibres.spreadFibres(this.worldObj, x, y, z));
             }
             this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
         }
@@ -305,8 +314,8 @@ public class TileEntitySoulBrazier extends TileVisRelay implements IEssentiaTran
 
     @Override
     public void addTicket() {
-        ForgeChunkManager.Ticket newTicket = ForgeChunkManager.requestTicket(
-                ThaumicExploration.instance, this.worldObj, ForgeChunkManager.Type.NORMAL);
+        ForgeChunkManager.Ticket newTicket = ForgeChunkManager
+                .requestTicket(ThaumicExploration.instance, this.worldObj, ForgeChunkManager.Type.NORMAL);
         newTicket.getModData().setInteger("xCoord", this.xCoord);
         newTicket.getModData().setInteger("yCoord", this.yCoord);
         newTicket.getModData().setInteger("zCoord", this.zCoord);

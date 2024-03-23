@@ -1,30 +1,33 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import flaxbeard.thaumicexploration.client.render.model.ModelJarOverlay;
-import flaxbeard.thaumicexploration.tile.TileEntityBoundJar;
 import net.minecraft.item.ItemDye;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
+import flaxbeard.thaumicexploration.client.render.model.ModelJarOverlay;
+import flaxbeard.thaumicexploration.tile.TileEntityBoundJar;
 import thaumcraft.client.renderers.tile.TileJarRenderer;
 import thaumcraft.common.tiles.TileJar;
 
 public class TileEntityBoundJarRender extends TileJarRenderer {
+
     private ModelJarOverlay model = new ModelJarOverlay();
-    private static final ResourceLocation overlayn =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundchestoverlaynone.png");
-    private static final ResourceLocation overlay0 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundjaroverlay0.png");
-    private static final ResourceLocation seal =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundjaroverlayseal.png");
-    private static final ResourceLocation overlay1 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundjaroverlay1.png");
-    private static final ResourceLocation overlay2 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundjaroverlay2.png");
-    private static final ResourceLocation overlay3 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundjaroverlay3.png");
-    private static final ResourceLocation overlay4 =
-            new ResourceLocation("thaumicexploration:textures/blocks/boundjaroverlay4.png");
-    private static final ResourceLocation[] overlays = {overlayn, overlay0, overlay1, overlay2, overlay3, overlay4};
+    private static final ResourceLocation overlayn = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundchestoverlaynone.png");
+    private static final ResourceLocation overlay0 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundjaroverlay0.png");
+    private static final ResourceLocation seal = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundjaroverlayseal.png");
+    private static final ResourceLocation overlay1 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundjaroverlay1.png");
+    private static final ResourceLocation overlay2 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundjaroverlay2.png");
+    private static final ResourceLocation overlay3 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundjaroverlay3.png");
+    private static final ResourceLocation overlay4 = new ResourceLocation(
+            "thaumicexploration:textures/blocks/boundjaroverlay4.png");
+    private static final ResourceLocation[] overlays = { overlayn, overlay0, overlay1, overlay2, overlay3, overlay4 };
 
     public void renderTileEntityAt(TileJar tile, double x, double y, double z, float f) {
         super.renderTileEntityAt(tile, x, y, z, f);

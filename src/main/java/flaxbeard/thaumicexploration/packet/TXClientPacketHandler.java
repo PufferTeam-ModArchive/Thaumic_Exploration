@@ -1,5 +1,14 @@
 package flaxbeard.thaumicexploration.packet;
 
+import java.io.IOException;
+
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityClientPlayerMP;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.util.ChunkCoordinates;
+import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
+
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.network.FMLNetworkEvent.ClientCustomPacketEvent;
 import cpw.mods.fml.common.network.internal.FMLProxyPacket;
@@ -9,13 +18,6 @@ import io.netty.buffer.ByteBuf;
 import io.netty.buffer.ByteBufInputStream;
 import io.netty.buffer.ByteBufOutputStream;
 import io.netty.buffer.Unpooled;
-import java.io.IOException;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.entity.EntityClientPlayerMP;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.ChunkCoordinates;
-import net.minecraft.world.World;
-import net.minecraftforge.common.DimensionManager;
 import thaumcraft.client.fx.bolt.FXLightningBolt;
 
 public class TXClientPacketHandler extends TXServerPacketHandler {
@@ -34,8 +36,7 @@ public class TXClientPacketHandler extends TXServerPacketHandler {
             out.writeInt(cc.posZ);
             out.writeInt(p);
             out.writeInt(side);
-        } catch (IOException e) {
-        }
+        } catch (IOException e) {}
         FMLProxyPacket packet = new FMLProxyPacket(buf, "tExploration");
         ThaumicExploration.channel.sendToServer(packet);
         try {
@@ -69,8 +70,7 @@ public class TXClientPacketHandler extends TXServerPacketHandler {
                         readInt = bbis.readInt();
                         if (world.getEntityByID(readInt) != null) {
 
-                            if (player.getUniqueID()
-                                    != Minecraft.getMinecraft().thePlayer.getUniqueID()) {
+                            if (player.getUniqueID() != Minecraft.getMinecraft().thePlayer.getUniqueID()) {
 
                                 FXLightningBolt bolt = new FXLightningBolt(
                                         player.worldObj,
@@ -86,9 +86,9 @@ public class TXClientPacketHandler extends TXServerPacketHandler {
                                         5);
                                 bolt.defaultFractal();
                                 bolt.setType(5);
-                                //		        	        if (player.getUniqueID().equalsIgnoreCase("killajoke")) {
-                                //		        	        	bolt.setType(3);
-                                //		        	        }
+                                // if (player.getUniqueID().equalsIgnoreCase("killajoke")) {
+                                // bolt.setType(3);
+                                // }
                                 bolt.setWidth(0.0625F);
                                 bolt.finalizeBolt();
                                 // System.out.println(Minecraft.getMinecraft().thePlayer.username);

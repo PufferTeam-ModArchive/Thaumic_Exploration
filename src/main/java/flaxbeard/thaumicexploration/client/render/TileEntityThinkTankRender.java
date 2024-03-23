@@ -1,10 +1,7 @@
 package flaxbeard.thaumicexploration.client.render;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import flaxbeard.thaumicexploration.client.render.model.ModelLargeJar;
-import flaxbeard.thaumicexploration.tile.TileEntityThinkTank;
 import java.util.Random;
+
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.ModelBook;
 import net.minecraft.client.model.ModelRenderer;
@@ -13,26 +10,33 @@ import net.minecraft.entity.Entity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.MathHelper;
 import net.minecraft.util.ResourceLocation;
+
 import org.lwjgl.opengl.GL11;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import flaxbeard.thaumicexploration.client.render.model.ModelLargeJar;
+import flaxbeard.thaumicexploration.tile.TileEntityThinkTank;
 import thaumcraft.client.lib.UtilsFX;
 import thaumcraft.client.renderers.models.ModelBrain;
 
 @SideOnly(Side.CLIENT)
 public class TileEntityThinkTankRender extends TileEntitySpecialRenderer {
+
     private ModelLargeJar model = new ModelLargeJar();
     private ModelBrain brain = new ModelBrain();
     private ModelRenderer modelBox;
     private float oldRotationDegrees;
     private ModelBook enchantmentBook = new ModelBook();
-    private int[] lastDirection = {1, 1, 1, 1, 1, 1, 1, 1};
-    private int[] direction = {1, 1, 1, 1, 1, 1, 1, 1};
-    private int[] numBooks = {6, 8, 8};
-    private static final ResourceLocation brineTexture =
-            new ResourceLocation("thaumicexploration:textures/models/largejarbrine.png");
-    private static final ResourceLocation enchantingTableBookTextures =
-            new ResourceLocation("textures/entity/enchanting_table_book.png");
-    private static final ResourceLocation largeJarTexture =
-            new ResourceLocation("thaumicexploration:textures/models/largejar.png");
+    private int[] lastDirection = { 1, 1, 1, 1, 1, 1, 1, 1 };
+    private int[] direction = { 1, 1, 1, 1, 1, 1, 1, 1 };
+    private int[] numBooks = { 6, 8, 8 };
+    private static final ResourceLocation brineTexture = new ResourceLocation(
+            "thaumicexploration:textures/models/largejarbrine.png");
+    private static final ResourceLocation enchantingTableBookTextures = new ResourceLocation(
+            "textures/entity/enchanting_table_book.png");
+    private static final ResourceLocation largeJarTexture = new ResourceLocation(
+            "thaumicexploration:textures/models/largejar.png");
 
     public void renderInventoryIcon(double x, double y, double z, float f) {
         GL11.glPushMatrix();
@@ -99,17 +103,14 @@ public class TileEntityThinkTankRender extends TileEntitySpecialRenderer {
             GL11.glEnable(3042);
             GL11.glBlendFunc(770, 771);
 
-            Minecraft.getMinecraft()
-                    .thePlayer
-                    .worldObj
-                    .spawnParticle(
-                            "enchantmenttable",
-                            (float) x + 0.5F + (2 * Math.sin(rotationDegrees)),
-                            (float) y,
-                            (float) z + 0.5F + (2 * Math.cos(rotationDegrees)),
-                            0.0F,
-                            0.1F,
-                            0.0F);
+            Minecraft.getMinecraft().thePlayer.worldObj.spawnParticle(
+                    "enchantmenttable",
+                    (float) x + 0.5F + (2 * Math.sin(rotationDegrees)),
+                    (float) y,
+                    (float) z + 0.5F + (2 * Math.cos(rotationDegrees)),
+                    0.0F,
+                    0.1F,
+                    0.0F);
             switch (direction[i]) {
                 case 2:
                     this.enchantmentBook.render((Entity) null, f1, 1.0F - f4, 0.0F, 0.75F, 0.0F, 0.0625F);

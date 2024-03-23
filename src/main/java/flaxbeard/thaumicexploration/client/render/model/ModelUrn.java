@@ -1,12 +1,14 @@
 package flaxbeard.thaumicexploration.client.render.model;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.model.ModelRenderer;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 @SideOnly(Side.CLIENT)
 public class ModelUrn extends ModelBase {
+
     public ModelRenderer urn = (new ModelRenderer(this, 0, 0)).setTextureSize(64, 64);
 
     public ModelUrn() {
